@@ -11,7 +11,7 @@ public class UsersModel {
 
     private String name;
 
-    private int phone;
+    private String phone;
 
     private String companyName;
 
