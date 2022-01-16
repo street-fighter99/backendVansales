@@ -22,7 +22,7 @@ public class UsersController {
         return usersService.getAll();
     }
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     ResponseEntity updateTheUserByPhoneNumber(@RequestBody UsersModel usersModel){
         return usersService.updateByPhoneNo(usersModel);
     }
