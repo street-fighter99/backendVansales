@@ -22,7 +22,7 @@ public class UsersEntity {
     private String name;
 
     @Column(name = "phone")
-    private int phone;
+    private String phone;
 
     @Column(name = "company_name")
     private String companyName;
