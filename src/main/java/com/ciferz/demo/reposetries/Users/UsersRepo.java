@@ -6,16 +6,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
+@javax.transaction.Transactional
 @Repository
 public interface UsersRepo extends JpaRepository<UsersEntity,Integer> {
 
     @Modifying
-    @Query(value = "update UsersEntity De set De.name=?1, De.companyName=?2, De.CompanyNameInArabic=?3, De.address=?4, De.addressInArabic=?5, De.vatNo=?6 where De.phone=?7 ")
-    void update(String name, String companyName, String companyNameInArabic, String address, String addressInArabic, String vatNo, String phone);
+    @Query(value = "update UsersEntity De set De.name=?1, De.companyName=?2, De.companyNameInArabic=?3, De.address=?4, De.addressInArabic=?5, De.vatNo=?6 where De.phone=?7")
+    void updates(String name, String companyName, String companyNameInArabic, String address, String addressInArabic, String vatNo, int phone);
 
-    UsersEntity getByPhone(String phone);
+    UsersEntity getByPhone(int phone);
 }

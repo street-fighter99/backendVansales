@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Data
-@Table(name = "users")
+@Table(name = "user")
 public class UsersEntity {
 
     @Id
@@ -22,7 +22,7 @@ public class UsersEntity {
     private String name;
 
     @Column(name = "phone")
-    private String phone;
+    private int phone;
 
     @Column(name = "company_name")
     private String companyName;

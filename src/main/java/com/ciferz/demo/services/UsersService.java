@@ -17,7 +17,7 @@ public class UsersService {
     @Autowired
     UsersRepo usersRepo;
 
-    ModelMapper modelMapper = new ModelMapper();
+   private final ModelMapper modelMapper = new ModelMapper();
 
     public List<UsersEntity> getAll() {
         List<UsersEntity> list = usersRepo.findAll();
@@ -26,12 +26,12 @@ public class UsersService {
 
 
     public ResponseEntity updateByPhoneNo(UsersModel usersModel) {
-        usersRepo.update(usersModel.getName(),usersModel.getCompanyName(),usersModel.getCompanyNameInArabic(),usersModel.getAddress(),usersModel.getAddressInArabic(),usersModel.getVatNo(),usersModel.getPhone());
+        usersRepo.updates(usersModel.getName(),usersModel.getCompanyName(),usersModel.getCompanyNameInArabic(),usersModel.getAddress(),usersModel.getAddressInArabic(),usersModel.getVatNo(),usersModel.getPhone());
 
         return new ResponseEntity("Upadted",HttpStatus.ACCEPTED);
     }
 
-    public ResponseEntity isExist(String phone) {
+    public ResponseEntity isExist(int phone) {
         UsersEntity usersEntity = usersRepo.getByPhone(phone);
         if (usersEntity == null){
 
