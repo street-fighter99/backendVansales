@@ -3,6 +3,7 @@ package com.ciferz.demo.services;
 import com.ciferz.demo.model.UsersModel;
 import com.ciferz.demo.reposetries.Users.Entity.UsersEntity;
 import com.ciferz.demo.reposetries.Users.UsersRepo;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ public class UsersService {
 
     @Autowired
     UsersRepo usersRepo;
+
+    ModelMapper modelMapper = new ModelMapper();
 
     public List<UsersEntity> getAll() {
         List<UsersEntity> list = usersRepo.findAll();
@@ -37,6 +40,13 @@ public class UsersService {
         {
             return new ResponseEntity("This phone number is already Exist in the Database", HttpStatus.ACCEPTED);
         }
+
+    }
+
+    public ResponseEntity addUser(UsersModel usersModel) {
+        UsersEntity users=modelMapper.map(usersModel,UsersEntity.class);
+        usersRepo.saveAndFlush(users);
+        return new ResponseEntity("Data has been saved.",HttpStatus.ACCEPTED);
 
     }
 }

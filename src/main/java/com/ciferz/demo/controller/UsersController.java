@@ -32,6 +32,12 @@ public class UsersController {
         return usersService.isExist(usersModel.getPhone());
     }
 
+    @PostMapping("/add/user")
+    ResponseEntity saveUser(@RequestBody UsersModel usersModel)
+    {
+        return usersService.addUser(usersModel);
+    }
+
 
 
 }
