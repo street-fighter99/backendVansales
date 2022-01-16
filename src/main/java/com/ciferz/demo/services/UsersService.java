@@ -31,7 +31,7 @@ public class UsersService {
         return new ResponseEntity("Upadted",HttpStatus.ACCEPTED);
     }
 
-    public ResponseEntity isExist(int phone) {
+    public ResponseEntity isExist(String phone) {
         UsersEntity usersEntity = usersRepo.getByPhone(phone);
         if (usersEntity == null){
 
