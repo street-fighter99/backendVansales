@@ -18,4 +18,7 @@ public interface ItemRepo extends JpaRepository<ItemEntity,Integer> {
     void update(int id, int isactive);
 
 
+    @Modifying
+    @Query(value = "update ItemEntity De set De.stock=?2 where De.id=?1")
+    void updateStocks(int id, int stock);
 }
