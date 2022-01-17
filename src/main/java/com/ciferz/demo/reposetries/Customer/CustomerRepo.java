@@ -15,4 +15,7 @@ public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
     @Query(value = "update CustomerEntity De set De.isactive=?2 where De.id=?1")
     void update(int id, int isactive);
 
+    @Modifying
+    @Query(value = "update CustomerEntity De set De.cbalance=?2 where De.id=?1")
+    void updateBal(int id, double cbalance);
 }

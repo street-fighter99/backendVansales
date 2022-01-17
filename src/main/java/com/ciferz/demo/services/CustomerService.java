@@ -44,4 +44,10 @@ public class CustomerService {
         return new ResponseEntity("UPDATED",HttpStatus.ACCEPTED);
     }
 
+    public ResponseEntity updateBal(CustomerModel customerModel) {
+        customerRepo.updateBal(customerModel.getId(),customerModel.getCbalance());
+
+       return new ResponseEntity("Balance updated",HttpStatus.ACCEPTED);
+
+    }
 }

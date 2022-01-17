@@ -40,4 +40,11 @@ public class CustomerController {
         return  customerService.aciveStatus(id);
     }
 
+    @PostMapping("/update/balance")
+    public ResponseEntity updateBal(@RequestBody CustomerModel customerModel){
+
+    return customerService.updateBal(customerModel);
+    }
+
 }
+
