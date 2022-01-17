@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-@javax.transaction.Transactional
-@Repository
 public interface UsersRepo extends JpaRepository<UsersEntity,Integer> {
 
     @Modifying
