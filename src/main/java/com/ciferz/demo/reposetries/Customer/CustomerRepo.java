@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
@@ -18,4 +19,6 @@ public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
     @Modifying
     @Query(value = "update CustomerEntity De set De.cbalance=?2 where De.id=?1")
     void updateBal(int id, double cbalance);
+
+    List<CustomerEntity> getByIsactive(int i);
 }

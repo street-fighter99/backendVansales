@@ -50,4 +50,9 @@ public class CustomerService {
        return new ResponseEntity("Balance updated",HttpStatus.ACCEPTED);
 
     }
+
+    public List<CustomerEntity> getActiveCustomer() {
+        List<CustomerEntity> list = customerRepo.getByIsactive(1);
+        return list;
+    }
 }
