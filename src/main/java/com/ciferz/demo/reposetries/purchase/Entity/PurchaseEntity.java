@@ -32,6 +32,9 @@ public class PurchaseEntity {
     @Column(name = "discount")
     private double discount;
 
+    @Column(name = "aftdiscount")
+    private double aftDiscount;
+
     @Column(name = "net_amount")
     private double netAmount;
 
@@ -44,8 +47,8 @@ public class PurchaseEntity {
     @Column(name = "total_balance")
     private double totalBalance;
 
-    @Column(name = "vat_no")
-    private String vatNo;
+    @Column(name = "vat")
+    private String vat;
 
 
 }

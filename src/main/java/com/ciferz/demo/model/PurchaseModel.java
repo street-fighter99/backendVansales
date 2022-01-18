@@ -14,6 +14,8 @@ public class PurchaseModel {
 
     private double discount;
 
+    private double aftDiscount;
+
     private double netAmount;
 
     private double paidAmount;
@@ -22,5 +24,5 @@ public class PurchaseModel {
 
     private double totalBalance;
 
-    private double vatNo;
+    private double vat;
 }
