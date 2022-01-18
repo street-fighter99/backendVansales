@@ -22,6 +22,11 @@ public class UsersController {
         return usersService.getAll();
     }
 
+    @GetMapping("/get/byPhone/{phone}")
+    UsersEntity getByPhone(@PathVariable String phone){
+        return usersService.getuserPhone(phone);
+    }
+
     @PostMapping("/update")
     ResponseEntity updateTheUserByPhoneNumber(@RequestBody UsersModel usersModel){
         return usersService.updateByPhoneNo(usersModel);

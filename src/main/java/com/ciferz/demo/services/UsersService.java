@@ -49,4 +49,9 @@ public class UsersService {
         return new ResponseEntity("Data has been saved.",HttpStatus.ACCEPTED);
 
     }
+
+    public UsersEntity getuserPhone(String phone) {
+        UsersEntity users = usersRepo.getByPhone(phone);
+        return users;
+    }
 }
