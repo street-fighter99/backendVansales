@@ -27,9 +27,9 @@ public class UsersController {
         return usersService.updateByPhoneNo(usersModel);
     }
 
-    @GetMapping("/is/exist")
-    ResponseEntity isExist(@RequestBody UsersModel usersModel){
-        return usersService.isExist(usersModel.getPhone());
+    @GetMapping("/is/exist/{phone}")
+    ResponseEntity isExist(@PathVariable String phone){
+        return usersService.isExist(phone);
     }
 
     @PostMapping("/add/user")
