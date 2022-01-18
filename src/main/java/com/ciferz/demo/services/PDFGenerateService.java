@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -20,7 +21,7 @@ public class PDFGenerateService {
     @Autowired
     SalesRepo salesRepo;
 
-    public void PdfGenerator(HttpServletResponse response) throws IOException {
+    public void PdfGenerator(HttpServletResponse response, String date) throws IOException {
 
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document,response.getOutputStream());
@@ -50,8 +51,9 @@ public class PDFGenerateService {
         table.setSpacingBefore(12);
 
 
+
         writeTableHeader(table);
-        writeTableData(table);
+        writeTableData(table,date);
 
         document.add(table);
 
@@ -92,8 +94,8 @@ public class PDFGenerateService {
 
     }
 
-    public void writeTableData(PdfPTable table){
-        List<SalesEntity> list = salesRepo.findAll();
+    public void writeTableData(PdfPTable table, String date){
+        List<SalesEntity> list = salesRepo.SDatess(date);
         double totalAmnt =0.0;
         double totalNetAmnt =0.0;
         double totalReceivedAmnt =0.0;
@@ -118,8 +120,18 @@ public class PDFGenerateService {
             totalReceivedAmnt = totalReceivedAmnt + sales.getRecievedAmount();
             totalBalance = totalBalance + sales.getBalance();
             totalTBalance = totalTBalance + sales.getTotalBalance();
+
+
         }
-        System.out.println("////////////////////"+totalAmnt);
+
+        PdfPTable table1 = new PdfPTable(10);
+        table.setWidthPercentage(100);
+        table.setSpacingBefore(12);
+        PdfPCell cell = new PdfPCell(new Phrase("Total"));
+        cell.setColspan(5);
+        table1.addCell(cell);
+        table.addCell(cell);
+
 
 
     }

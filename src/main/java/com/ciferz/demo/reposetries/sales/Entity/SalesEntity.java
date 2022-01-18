@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -50,5 +51,8 @@ public class SalesEntity {
 
     @Column(name = "vat")
     private double vat;
+
+    @Column(name = "s_date")
+    private Date sDate;
 
 }
