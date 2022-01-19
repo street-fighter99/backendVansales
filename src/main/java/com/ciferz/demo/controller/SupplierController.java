@@ -1,6 +1,7 @@
 package com.ciferz.demo.controller;
 
 import com.ciferz.demo.model.SupplierModel;
+import com.ciferz.demo.reposetries.Customer.Entity.CustomerEntity;
 import com.ciferz.demo.reposetries.supplier.Entity.SupplierEntity;
 import com.ciferz.demo.services.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class SupplierController {
     @PutMapping("/isActive/{id}")
     public ResponseEntity updateIsActive(@PathVariable int id){
         return  supplierService.aciveStatus(id);
+    }
+
+    @GetMapping("/get/all/ActiveCustomer")
+    public List<SupplierEntity> getAllActiveCustomer(){
+        List<SupplierEntity> list = supplierService.getActiveCustomer();
+        return list;
     }
 
 }

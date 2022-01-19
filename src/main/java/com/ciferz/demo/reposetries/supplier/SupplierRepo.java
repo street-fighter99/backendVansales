@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 public interface SupplierRepo extends JpaRepository<SupplierEntity,Integer> {
@@ -14,4 +15,5 @@ public interface SupplierRepo extends JpaRepository<SupplierEntity,Integer> {
     @Query(value = "update SupplierEntity De set De.isactive=?2 where De.id=?1 ")
     void update(int id, int isactive);
 
+    List<SupplierEntity> getByIsactive(int i);
 }

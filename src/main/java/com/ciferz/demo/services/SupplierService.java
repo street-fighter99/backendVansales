@@ -1,6 +1,7 @@
 package com.ciferz.demo.services;
 
 import com.ciferz.demo.model.SupplierModel;
+import com.ciferz.demo.reposetries.Customer.Entity.CustomerEntity;
 import com.ciferz.demo.reposetries.supplier.Entity.SupplierEntity;
 import com.ciferz.demo.reposetries.supplier.SupplierRepo;
 import org.modelmapper.ModelMapper;
@@ -44,4 +45,8 @@ public class SupplierService {
         return new ResponseEntity("UPDATED",HttpStatus.ACCEPTED);
     }
 
+    public List<SupplierEntity> getActiveCustomer() {
+        List<SupplierEntity> list = supplierRepo.getByIsactive(1);
+        return list;
+    }
 }
