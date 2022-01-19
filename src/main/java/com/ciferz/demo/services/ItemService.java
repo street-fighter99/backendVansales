@@ -46,9 +46,15 @@ public class ItemService {
         return itemEntity;
     }
 
-    public ResponseEntity updateStocks(ItemModel itemModel) {
+    public ResponseEntity updateSubStocks(ItemModel itemModel) {
         ItemEntity itemEntity = itemRepo.getById(itemModel.getId());
         itemRepo.updateStocks(itemModel.getId(),itemEntity.getStock()-itemModel.getStock());
+        return new ResponseEntity("stock is updated",HttpStatus.ACCEPTED);
+    }
+
+    public ResponseEntity updateAddStocks(ItemModel itemModel) {
+        ItemEntity itemEntity = itemRepo.getById(itemModel.getId());
+        itemRepo.updateStocks(itemModel.getId(),itemEntity.getStock()+itemModel.getStock());
         return new ResponseEntity("stock is updated",HttpStatus.ACCEPTED);
     }
 }

@@ -40,9 +40,14 @@ public class ItemController {
         return  itemService.aciveStatus(itemModel);
     }
 
-    @PostMapping("update/stock")
-    public  ResponseEntity updateStocks(@RequestBody ItemModel itemModel){
-        return itemService.updateStocks(itemModel);
+    @PostMapping("update/substock")
+    public  ResponseEntity updateSubStocks(@RequestBody ItemModel itemModel){
+        return itemService.updateSubStocks(itemModel);
+    }
+
+    @PostMapping("update/addstock")
+    public  ResponseEntity updateAddStocks(@RequestBody ItemModel itemModel){
+        return itemService.updateAddStocks(itemModel);
     }
 
 }
