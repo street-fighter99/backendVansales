@@ -46,7 +46,7 @@ public class CustomerController {
     return customerService.updateBal(customerModel);
     }
 
-    @GetMapping("/get/all/ActiveCustomer")
+    @GetMapping("/get/all/active")
     public List<CustomerEntity> getAllActiveCustomer(){
         List<CustomerEntity> list = customerService.getActiveCustomer();
         return list;

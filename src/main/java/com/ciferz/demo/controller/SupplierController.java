@@ -40,7 +40,7 @@ public class SupplierController {
         return  supplierService.aciveStatus(id);
     }
 
-    @GetMapping("/get/all/ActiveCustomer")
+    @GetMapping("/get/all/active")
     public List<SupplierEntity> getAllActiveCustomer(){
         List<SupplierEntity> list = supplierService.getActiveCustomer();
         return list;
