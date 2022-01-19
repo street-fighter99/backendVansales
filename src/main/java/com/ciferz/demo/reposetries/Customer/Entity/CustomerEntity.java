@@ -23,14 +23,14 @@ public class CustomerEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "aname")
-    private String aname;
+//    @Column(name = "aname")
+//    private String aname;
 
     @Column(name = "address")
     private String address;
 
-    @Column(name = "aaddress")
-    private String aaddress;
+//    @Column(name = "aaddress")
+//    private String aaddress;
 
     @Column(name = "vat_no")
     private String vatNo;
