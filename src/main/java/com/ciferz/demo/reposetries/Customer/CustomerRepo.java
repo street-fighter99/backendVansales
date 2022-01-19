@@ -2,6 +2,7 @@ package com.ciferz.demo.reposetries.Customer;
 
 import com.ciferz.demo.model.CustomerModel;
 import com.ciferz.demo.reposetries.Customer.Entity.CustomerEntity;
+import com.ciferz.demo.reposetries.sales.Entity.SalesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,4 +22,7 @@ public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
     void updateBal(int id, double cbalance);
 
     List<CustomerEntity> getByIsactive(int i);
+
+    @Query(value = "SELECT * FROM vansale.customer where id=?1", nativeQuery = true)
+    List<CustomerEntity> getallById(int id);
 }
