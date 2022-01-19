@@ -47,7 +47,8 @@ public class ItemService {
     }
 
     public ResponseEntity updateStocks(ItemModel itemModel) {
-        itemRepo.updateStocks(itemModel.getId(),itemModel.getStock());
+        ItemEntity itemEntity = itemRepo.getById(itemModel.getId());
+        itemRepo.updateStocks(itemModel.getId(),itemEntity.getStock()-itemModel.getStock());
         return new ResponseEntity("stock is updated",HttpStatus.ACCEPTED);
     }
 }

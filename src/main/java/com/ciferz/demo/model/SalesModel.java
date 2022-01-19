@@ -2,6 +2,8 @@ package com.ciferz.demo.model;
 
 import lombok.Data;
 
+import java.sql.Date;
+
 @Data
 public class SalesModel {
 
@@ -28,6 +30,8 @@ public class SalesModel {
     private int isactive;
 
     private double vat;
+
+    private Date sDate;
 
 
 }
