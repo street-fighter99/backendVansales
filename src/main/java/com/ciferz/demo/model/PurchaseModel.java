@@ -1,6 +1,8 @@
 package com.ciferz.demo.model;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class PurchaseModel {
 
@@ -25,4 +27,6 @@ public class PurchaseModel {
     private double totalBalance;
 
     private double vat;
+
+    private Date tdate;
 }
