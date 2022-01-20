@@ -49,4 +49,10 @@ public class SupplierService {
         List<SupplierEntity> list = supplierRepo.getByIsactive(1);
         return list;
     }
+
+    public ResponseEntity updateBal(SupplierModel supplierModel) {
+        supplierRepo.updateBal(supplierModel.getId(),supplierModel.getCbalance());
+
+        return new ResponseEntity("Balance updated",HttpStatus.ACCEPTED);
+    }
 }

@@ -3,6 +3,7 @@ package com.ciferz.demo.services;
 import com.ciferz.demo.reposetries.Customer.CustomerRepo;
 import com.ciferz.demo.reposetries.Customer.Entity.CustomerEntity;
 import com.ciferz.demo.reposetries.sales.Entity.SalesEntity;
+import com.ciferz.demo.reposetries.sales.SalesRepo;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
@@ -12,19 +13,18 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class PDFCustomerBal {
+public class PDFVatReport {
+
+    @Autowired
+    SalesRepo salesRepo;
 
     @Autowired
     CustomerRepo customerRepo;
 
-    public void PdfGenerator(HttpServletResponse response, int id) throws IOException {
+    public void PdfGenerator(HttpServletResponse response, String currentDateTime) throws IOException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document,response.getOutputStream());
 
@@ -33,15 +33,12 @@ public class PDFCustomerBal {
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA);
         fontTitle.setSize(25);
 
-        Paragraph paragraph = new Paragraph("Customer Balance Report", fontTitle);
+        Paragraph paragraph = new Paragraph("Vat Report", fontTitle);
 
         paragraph.setAlignment(Element.ALIGN_CENTER);
 
         Font fontParagraph2 = FontFactory.getFont(FontFactory.HELVETICA);
         fontParagraph2.setSize(12);
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        String currentDateTime= dateFormat.format(new Date());
 
         Paragraph paragraph2 = new Paragraph("Date: "+currentDateTime, fontParagraph2);
         paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
@@ -58,21 +55,19 @@ public class PDFCustomerBal {
         document.add(paragraph);
         document.add(paragraph2);
 
-        PdfPTable table = new PdfPTable(4);
+        PdfPTable table = new PdfPTable(7);
         table.setWidthPercentage(100);
         table.setSpacingBefore(12);
 
 
 
         writeTableHeader(table);
-        writeTableData(table,id);
+        writeTableData(table);
 
         document.add(table);
         document.add(paragraph1);
         document.add(paragraph12);
         document.close();
-
-
     }
 
     public void writeTableHeader(PdfPTable table){
@@ -83,47 +78,39 @@ public class PDFCustomerBal {
 
         cell.setPhrase(new Phrase("S.No",font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("Customer ID",font));
+        cell.setPhrase(new Phrase("DATE",font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("name",font));
+        cell.setPhrase(new Phrase("Name",font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("Balance",font));
+        cell.setPhrase(new Phrase("VAT No.",font));
+        table.addCell(cell);
+        cell.setPhrase(new Phrase("Net Amount",font));
+        table.addCell(cell);
+        cell.setPhrase(new Phrase("VAT",font));
+        table.addCell(cell);
+        cell.setPhrase(new Phrase("Net Total(Aft Discount)",font));
         table.addCell(cell);
     }
 
-    public void writeTableData(PdfPTable table, int id){
-        List<CustomerEntity> list = customerRepo.getallById(id);
+    public void writeTableData(PdfPTable table){
+        List<SalesEntity> list = salesRepo.findAll();
         double totalBalance =0.0;
 
 
         int i = 1;
-        for (CustomerEntity customer : list){
-            i=i++;
+        for (SalesEntity sales: list){
+            i++;
             table.addCell(String.valueOf(i));
-            table.addCell(String.valueOf(customer.getId()));
-            table.addCell(String.valueOf(customer.getName()));
-            table.addCell(String.valueOf(customer.getCbalance()));
+            table.addCell(String.valueOf(sales.getTdate()));
+            CustomerEntity customerEntity = customerRepo.getById(sales.getCustomerId());
+            table.addCell(String.valueOf(customerEntity.getName()));
+            table.addCell(String.valueOf(customerEntity.getVatNo()));
+            table.addCell(String.valueOf(sales.getTotalAmount()));
+            table.addCell(String.valueOf(sales.getVat()));
+            table.addCell(String.valueOf(sales.getAftDiscount()));
 
-            totalBalance = totalBalance + customer.getCbalance();
 
         }
 
-        Font font = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE);
-        font.setSize(13);
-
-
-
-        PdfPCell cells = new PdfPCell(new Phrase("Total",font));
-        cells.setHorizontalAlignment(Element.ALIGN_RIGHT);
-        cells.setVerticalAlignment(Element.ALIGN_CENTER);
-        cells.setPaddingRight(10);
-        table.addCell("");
-        table.addCell("");
-        table.addCell(cells);
-        table.addCell(String.valueOf(totalBalance));
-
-
-
     }
-
 }

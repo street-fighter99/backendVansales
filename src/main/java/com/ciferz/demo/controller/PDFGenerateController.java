@@ -4,6 +4,7 @@ import com.ciferz.demo.inventory.SoldItemStocks;
 import com.ciferz.demo.services.PDFCustomerBal;
 import com.ciferz.demo.services.PDFGenerateService;
 import com.ciferz.demo.services.PDFStockListService;
+import com.ciferz.demo.services.PDFVatReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,9 @@ public class PDFGenerateController {
 
     @Autowired
     PDFStockListService pdfStockListService;
+
+    @Autowired
+    PDFVatReport pdfVatReport;
 
 
     @GetMapping("/generate/pdf/sales/{date}")
@@ -70,6 +74,19 @@ public class PDFGenerateController {
         response.setHeader(headerKey,headerValue);
 
         pdfStockListService.PdfGenerator(response, date);
+    }
+
+    @GetMapping("/generate/vatreport")
+    public void generateVatReport(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
+        String currentDateTime= dateFormat.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=VatReportPDF_"+ currentDateTime +".pdf";
+        response.setHeader(headerKey,headerValue);
+
+        pdfVatReport.PdfGenerator(response,currentDateTime);
     }
 
 }

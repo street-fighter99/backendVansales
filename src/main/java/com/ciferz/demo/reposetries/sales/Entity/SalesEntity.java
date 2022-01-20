@@ -3,9 +3,10 @@ package com.ciferz.demo.reposetries.sales.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -52,6 +53,6 @@ public class SalesEntity {
     private double vat;
 
     @Column(name = "s_date")
-    private Date sDate;
+    private Date tdate;
 
 }

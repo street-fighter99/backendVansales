@@ -1,5 +1,6 @@
 package com.ciferz.demo.controller;
 
+import com.ciferz.demo.model.CustomerModel;
 import com.ciferz.demo.model.SupplierModel;
 import com.ciferz.demo.reposetries.Customer.Entity.CustomerEntity;
 import com.ciferz.demo.reposetries.supplier.Entity.SupplierEntity;
@@ -44,6 +45,11 @@ public class SupplierController {
     public List<SupplierEntity> getAllActiveCustomer(){
         List<SupplierEntity> list = supplierService.getActiveCustomer();
         return list;
+    }
+    @PostMapping("/update/balance")
+    public ResponseEntity updateBal(@RequestBody SupplierModel supplierModel){
+
+        return supplierService.updateBal(supplierModel);
     }
 
 }

@@ -16,4 +16,8 @@ public interface SupplierRepo extends JpaRepository<SupplierEntity,Integer> {
     void update(int id, int isactive);
 
     List<SupplierEntity> getByIsactive(int i);
+
+    @Modifying
+    @Query(value = "update SupplierEntity De set De.cbalance=?2 where De.id=?1")
+    void updateBal(int id, double cbalance);
 }
