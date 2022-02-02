@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UsersRepo extends JpaRepository<UsersEntity,Integer> {
 
     @Modifying
-    @Query(value = "update UsersEntity De set De.name=?1, De.companyName=?2, De.companyNameInArabic=?3, De.address=?4, De.addressInArabic=?5, De.vatNo=?6 where De.phone=?7")
+    @Query(value = "UPDATE `vansale`.`users` SET `name` =?1, `company_name` =?2, `company_name_in_arabic`=?3, `address` =?4,`address_in_arabic` =?5, `tax_no` =?6 WHERE (`phone` =?7)",nativeQuery = true)
     void updates(String name, String companyName, String companyNameInArabic, String address, String addressInArabic, String vatNo, String phone);
 
     UsersEntity getByPhone(String phone);

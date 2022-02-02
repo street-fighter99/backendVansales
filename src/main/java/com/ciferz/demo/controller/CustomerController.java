@@ -46,6 +46,13 @@ public class CustomerController {
     return customerService.updateBal(customerModel);
     }
 
+
+    @PostMapping("/update/all")
+    public ResponseEntity updateAll(@RequestBody CustomerModel customerModel){
+
+        return customerService.updateAll(customerModel);
+    }
+
     @GetMapping("/get/all/active")
     public List<CustomerEntity> getAllActiveCustomer(){
         List<CustomerEntity> list = customerService.getActiveCustomer();

@@ -50,4 +50,9 @@ public class ItemController {
         return itemService.updateAddStocks(itemModel);
     }
 
+    @PostMapping("update/All")
+    public  ResponseEntity updateAll(@RequestBody ItemModel itemModel){
+        return itemService.updateAll(itemModel);
+    }
+
 }

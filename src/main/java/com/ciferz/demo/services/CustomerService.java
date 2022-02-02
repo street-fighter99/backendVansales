@@ -55,4 +55,10 @@ public class CustomerService {
         List<CustomerEntity> list = customerRepo.getByIsactive(1);
         return list;
     }
+
+    public ResponseEntity updateAll(CustomerModel customerModel) {
+        customerRepo.updateAll(customerModel.getName(),customerModel.getVatNo(),customerModel.getCbalance(),customerModel.getIsactive(),customerModel.getAddress(),customerModel.getId());
+        return new ResponseEntity("Customer details updated.",HttpStatus.ACCEPTED);
+
+    }
 }

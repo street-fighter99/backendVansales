@@ -25,4 +25,8 @@ public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
 
     @Query(value = "SELECT * FROM vansale.customer where id=?1", nativeQuery = true)
     List<CustomerEntity> getallById(int id);
+
+    @Modifying
+    @Query(value = "UPDATE `vansale`.`customer` SET `name` =?1, `address` =?5, `vat_no` = ?2, `cbalance` = ?3, `is_active` = ?4 WHERE (`id` = ?6)",nativeQuery = true)
+    void updateAll(String name, String vatNo, double cbalance, int isactive, String address, int id);
 }
