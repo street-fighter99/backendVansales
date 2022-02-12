@@ -42,5 +42,8 @@ public class UsersEntity {
     @Column(name = "vat_no")
     private String vatNo;
 
+    @Column(name = "is_active")
+    private int isActive;
+
 
 }

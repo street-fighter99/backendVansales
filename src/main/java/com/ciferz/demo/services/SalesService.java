@@ -23,7 +23,7 @@ public class SalesService {
 
 
     public List<SalesEntity> showAllTheData() {
-        List<SalesEntity> list = salesRepo.findAll();
+        List<SalesEntity> list = salesRepo.findAllByOrderByIdDesc();
         return  list;
     }
 

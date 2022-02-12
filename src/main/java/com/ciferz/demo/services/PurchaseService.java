@@ -22,7 +22,7 @@ public class PurchaseService {
     ModelMapper modelMapper = new ModelMapper();
 
     public List<PurchaseEntity> showAllTheData() {
-        List<PurchaseEntity> list = purchaseRepo.findAll();
+        List<PurchaseEntity> list = purchaseRepo.findAllByOrderByIdDesc();
         return  list;
     }
 

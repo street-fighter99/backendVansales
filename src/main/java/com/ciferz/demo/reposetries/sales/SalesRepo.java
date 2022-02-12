@@ -22,6 +22,8 @@ public interface SalesRepo extends JpaRepository<SalesEntity,Integer> {
     @Query(value = "SELECT * FROM vansale.sales where s_date = ?1" ,nativeQuery = true)
     List<SalesEntity> SDatess(String date);
 
+    List<SalesEntity> findAllByOrderByIdDesc();
+
 
 //    List<SalesEntity> getBySDate(String date);
 }
