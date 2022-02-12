@@ -1,6 +1,8 @@
 package com.ciferz.demo.controller;
 
 import com.ciferz.demo.model.CompaniesModel;
+import com.ciferz.demo.reposetries.Companies.Entity.CompaniesEntity;
+import com.ciferz.demo.reposetries.Users.Entity.UsersEntity;
 import com.ciferz.demo.services.CompaniesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,11 @@ public class CompaniesController {
     @PostMapping("/Add")
     public ResponseEntity saveAllData(@RequestBody List<CompaniesModel> companiesModels){
         return  companiesService.addDatas(companiesModels);
+    }
+
+    @GetMapping("/get/byId/{id}")
+    CompaniesEntity getByPhone(@PathVariable int id){
+        return companiesService.getbyCompanyId(id);
     }
 
 

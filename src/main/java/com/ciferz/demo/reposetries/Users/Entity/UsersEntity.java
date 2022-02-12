@@ -30,6 +30,9 @@ public class UsersEntity {
     @Column(name = "company_name_in_arabic")
     private String companyNameInArabic;
 
+    @Column(name = "company_id")
+    private int companyId;
+
     @Column(name = "address")
     private String address;
 

@@ -54,4 +54,9 @@ public class UsersService {
         UsersEntity users = usersRepo.getByPhone(phone);
         return users;
     }
+
+    public List<UsersEntity> getAllByCompanyId(int id) {
+        List<UsersEntity> list = usersRepo.getByCompanyId(id);
+        return list;
+    }
 }

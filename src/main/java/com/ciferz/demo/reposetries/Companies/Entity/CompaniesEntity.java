@@ -24,8 +24,8 @@ public class CompaniesEntity {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "is_active")
+    private int isActive;
 
     @Column(name = "vat_no")
     private String vatNo;

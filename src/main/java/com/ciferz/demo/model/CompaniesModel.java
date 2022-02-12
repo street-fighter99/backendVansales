@@ -11,8 +11,8 @@ public class CompaniesModel {
 
     private String address;
 
-    private String phone;
-
     private String vatNo;
+
+    private  int isActive;
 
 }

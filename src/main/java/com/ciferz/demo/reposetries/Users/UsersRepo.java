@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 public interface UsersRepo extends JpaRepository<UsersEntity,Integer> {
 
@@ -16,4 +18,6 @@ public interface UsersRepo extends JpaRepository<UsersEntity,Integer> {
     void updates(String name, String companyName, String companyNameInArabic, String address, String addressInArabic, String vatNo, String phone);
 
     UsersEntity getByPhone(String phone);
+
+    List<UsersEntity> getByCompanyId(int id);
 }

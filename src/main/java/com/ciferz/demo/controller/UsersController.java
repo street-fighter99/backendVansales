@@ -22,10 +22,16 @@ public class UsersController {
         return usersService.getAll();
     }
 
+    @GetMapping("/get/all/byComnyId/{id}")
+    List<UsersEntity> getAllUserByCId(@PathVariable int id ){
+        return usersService.getAllByCompanyId(id);
+    }
+
     @GetMapping("/get/byPhone/{phone}")
     UsersEntity getByPhone(@PathVariable String phone){
         return usersService.getuserPhone(phone);
     }
+
 
     @PostMapping("/update")
     ResponseEntity updateTheUserByPhoneNumber(@RequestBody UsersModel usersModel){

@@ -32,4 +32,8 @@ public class CompaniesService {
         return new ResponseEntity("DATA HAS BEEN ADDED SUCCESSFULLY", HttpStatus.ACCEPTED);
     }
 
+    public CompaniesEntity getbyCompanyId(int id) {
+
+        return companiesRepo.findById(id).get();
+    }
 }
