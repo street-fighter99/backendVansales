@@ -35,8 +35,8 @@ public class PDFGenerateController {
     PDFVatReport pdfVatReport;
 
 
-    @GetMapping("/generate/pdf/sales")
-    public void generatePDF(HttpServletResponse response, @RequestBody pdfgetdata pdfdata) throws IOException {
+    @GetMapping("/generate/pdf/sales/{pdate}/{userID}")
+    public void generatePDF(HttpServletResponse response, @PathVariable("date") String pdate,@PathVariable("userID") int userID) throws IOException {
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
         String currentDateTime= dateFormat.format(new Date());
@@ -45,11 +45,11 @@ public class PDFGenerateController {
         String headerValue = "attachment; filename=SalesSummaryPDF_"+ currentDateTime +".pdf";
         response.setHeader(headerKey,headerValue);
 
-        pdfGenerateService.PdfGenerator(response, pdfdata.getPdate(),pdfdata.getUserId());
+        pdfGenerateService.PdfGenerator(response, pdate,userID);
     }
 
-    @GetMapping("/generate/pdf/customer/{id}")
-    public void generateCustomerBalPDF(HttpServletResponse response,@PathVariable int id) throws IOException {
+    @GetMapping("/generate/pdf/customer/{id}/{userID}")
+    public void generateCustomerBalPDF(HttpServletResponse response,@PathVariable("id") int id,@PathVariable("userID") int userID ) throws IOException {
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
         String currentDateTime= dateFormat.format(new Date());
@@ -58,11 +58,11 @@ public class PDFGenerateController {
         String headerValue = "attachment; filename=CustomerBalancePDF_"+ currentDateTime +".pdf";
         response.setHeader(headerKey,headerValue);
 
-        pdfCustomerBal.PdfGenerator(response, id);
+        pdfCustomerBal.PdfGenerator(response, id,userID);
     }
 
-    @GetMapping("/generate/stocklist/{date}")
-    public void generateCustomerBalPDF(HttpServletResponse response,@RequestBody pdfgetdata pdfgetdata) throws IOException {
+    @GetMapping("/generate/stocklist/{date}/{userID}")
+    public void generateCustomerBalsPDF(HttpServletResponse response,@PathVariable("date") String date,@PathVariable("userID") int userID) throws IOException {
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
         String currentDateTime= dateFormat.format(new Date());
@@ -71,11 +71,11 @@ public class PDFGenerateController {
         String headerValue = "attachment; filename=StockListPDF_"+ currentDateTime +".pdf";
         response.setHeader(headerKey,headerValue);
 
-        pdfStockListService.PdfGenerator(response, pdfgetdata.getPdate(), pdfgetdata.getUserId());
+        pdfStockListService.PdfGenerator(response, date, userID);
     }
 
-    @GetMapping("/generate/vatreport")
-    public void generateVatReport(HttpServletResponse response) throws IOException {
+    @GetMapping("/generate/vatreport/{userId}")
+    public void generateVatReport(HttpServletResponse response,@PathVariable int userId) throws IOException {
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
         String currentDateTime= dateFormat.format(new Date());
@@ -84,7 +84,7 @@ public class PDFGenerateController {
         String headerValue = "attachment; filename=VatReportPDF_"+ currentDateTime +".pdf";
         response.setHeader(headerKey,headerValue);
 
-        pdfVatReport.PdfGenerator(response,currentDateTime);
+        pdfVatReport.PdfGenerator(response,currentDateTime,userId);
     }
 
 

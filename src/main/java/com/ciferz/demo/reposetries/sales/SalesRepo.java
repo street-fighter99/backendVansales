@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.sql.Date;
 import java.util.List;
 @Repository
 @Transactional
@@ -26,6 +25,8 @@ public interface SalesRepo extends JpaRepository<SalesEntity,Integer> {
 
     @Query(value = "SELECT * FROM vansale.sales where user_id = ?1 ORDER BY id DESC" ,nativeQuery = true)
     List<SalesEntity> getByUserIdDesc(int id);
+
+    List<SalesEntity> findAllByUserId(int userId);
 
 
 //    List<SalesEntity> getBySDate(String date);

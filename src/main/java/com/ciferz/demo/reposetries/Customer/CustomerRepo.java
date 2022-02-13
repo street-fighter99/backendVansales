@@ -24,8 +24,8 @@ public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
     @Query(value = "SELECT * FROM vansale.customer where user_id=?1 and is_active =1", nativeQuery = true)
     List<CustomerEntity> getByactiveuserByuserID(int i);
 
-    @Query(value = "SELECT * FROM vansale.customer where id=?1", nativeQuery = true)
-    List<CustomerEntity> getallById(int id);
+    @Query(value = "SELECT * FROM vansale.customer where id=?1 and user_id = ?2", nativeQuery = true)
+    List<CustomerEntity> getallById(int id,int userID);
 
     @Modifying
     @Query(value = "UPDATE `vansale`.`customer` SET `name` =?1, `address` =?5, `vat_no` = ?2, `cbalance` = ?3, `is_active` = ?4 WHERE (`id` = ?6)",nativeQuery = true)

@@ -24,7 +24,7 @@ public class PDFVatReport {
     @Autowired
     CustomerRepo customerRepo;
 
-    public void PdfGenerator(HttpServletResponse response, String currentDateTime) throws IOException {
+    public void PdfGenerator(HttpServletResponse response, String currentDateTime, int userId) throws IOException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document,response.getOutputStream());
 
@@ -62,7 +62,7 @@ public class PDFVatReport {
 
 
         writeTableHeader(table);
-        writeTableData(table);
+        writeTableData(table,userId);
 
         document.add(table);
         document.add(paragraph1);
@@ -92,10 +92,9 @@ public class PDFVatReport {
         table.addCell(cell);
     }
 
-    public void writeTableData(PdfPTable table){
-        List<SalesEntity> list = salesRepo.findAll();
+    public void writeTableData(PdfPTable table, int userId){
+        List<SalesEntity> list = salesRepo.findAllByUserId(userId);
         double totalBalance =0.0;
-
 
         int i = 1;
         for (SalesEntity sales: list){

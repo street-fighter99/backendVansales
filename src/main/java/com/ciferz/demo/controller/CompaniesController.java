@@ -31,6 +31,7 @@ public class CompaniesController {
     @GetMapping("/get/byId/{id}")
     CompaniesEntity getByPhone(@PathVariable int id){
         return companiesService.getbyCompanyId(id);
+
     }
 
     @PostMapping("/update/status/ById/{id}")

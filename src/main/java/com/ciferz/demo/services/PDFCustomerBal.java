@@ -2,7 +2,6 @@ package com.ciferz.demo.services;
 
 import com.ciferz.demo.reposetries.Customer.CustomerRepo;
 import com.ciferz.demo.reposetries.Customer.Entity.CustomerEntity;
-import com.ciferz.demo.reposetries.sales.Entity.SalesEntity;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
@@ -16,7 +15,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PDFCustomerBal {
@@ -24,7 +22,7 @@ public class PDFCustomerBal {
     @Autowired
     CustomerRepo customerRepo;
 
-    public void PdfGenerator(HttpServletResponse response, int id) throws IOException {
+    public void PdfGenerator(HttpServletResponse response, int id, int userID) throws IOException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document,response.getOutputStream());
 
@@ -65,7 +63,7 @@ public class PDFCustomerBal {
 
 
         writeTableHeader(table);
-        writeTableData(table,id);
+        writeTableData(table,id,userID);
 
         document.add(table);
         document.add(paragraph1);
@@ -91,8 +89,8 @@ public class PDFCustomerBal {
         table.addCell(cell);
     }
 
-    public void writeTableData(PdfPTable table, int id){
-        List<CustomerEntity> list = customerRepo.getallById(id);
+    public void writeTableData(PdfPTable table, int id, int userID){
+        List<CustomerEntity> list = customerRepo.getallById(id,userID);
         double totalBalance =0.0;
 
 
