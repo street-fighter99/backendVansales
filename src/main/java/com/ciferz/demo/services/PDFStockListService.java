@@ -25,7 +25,7 @@ public class PDFStockListService {
     @Autowired
     SalesRepo salesRepo;
 
-    public void PdfGenerator(HttpServletResponse response, String date) throws IOException {
+    public void PdfGenerator(HttpServletResponse response, String date, int userID) throws IOException {
 
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document,response.getOutputStream());
@@ -64,7 +64,7 @@ public class PDFStockListService {
 
 
         writeTableHeader(table);
-        writeTableData(table,date);
+        writeTableData(table,date,userID);
 
         document.add(table);
         document.add(paragraph1);
@@ -95,8 +95,8 @@ public class PDFStockListService {
 
     }
 
-    public void writeTableData(PdfPTable table, String date){
-        List<StockChk> list = getalltheitem(date);
+    public void writeTableData(PdfPTable table, String date, int userId){
+        List<StockChk> list = getalltheitem(date,userId);
         double TotalQty =0.0;
         double TPrice =0.0;
         double TotalTPrice =0.0;
@@ -139,9 +139,9 @@ public class PDFStockListService {
 
 
 
-    public List<StockChk> getalltheitem(String date) {
+    public List<StockChk> getalltheitem(String date,int userId) {
 
-        List<SalesEntity> list = salesRepo.SDatess(date);
+        List<SalesEntity> list = salesRepo.SDatess(date,userId);
         int stock = 0;
         List<StockChk> list1 = new ArrayList<>();
 

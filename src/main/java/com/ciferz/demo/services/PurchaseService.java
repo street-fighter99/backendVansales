@@ -38,7 +38,7 @@ public class PurchaseService {
     }
 
     public List<PurchaseEntity> getAllByUserID(int id) {
-        return purchaseRepo.getByUserId(id);
+        return purchaseRepo.getByUserIdDesc(id);
     }
 }
 

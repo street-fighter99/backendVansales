@@ -5,13 +5,11 @@ import com.ciferz.demo.services.PDFCustomerBal;
 import com.ciferz.demo.services.PDFGenerateService;
 import com.ciferz.demo.services.PDFStockListService;
 import com.ciferz.demo.services.PDFVatReport;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -37,8 +35,8 @@ public class PDFGenerateController {
     PDFVatReport pdfVatReport;
 
 
-    @GetMapping("/generate/pdf/sales/{date}")
-    public void generatePDF(HttpServletResponse response,@PathVariable String date) throws IOException {
+    @GetMapping("/generate/pdf/sales")
+    public void generatePDF(HttpServletResponse response, @RequestBody pdfgetdata pdfdata) throws IOException {
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
         String currentDateTime= dateFormat.format(new Date());
@@ -47,7 +45,7 @@ public class PDFGenerateController {
         String headerValue = "attachment; filename=SalesSummaryPDF_"+ currentDateTime +".pdf";
         response.setHeader(headerKey,headerValue);
 
-        pdfGenerateService.PdfGenerator(response, date);
+        pdfGenerateService.PdfGenerator(response, pdfdata.getPdate(),pdfdata.getUserId());
     }
 
     @GetMapping("/generate/pdf/customer/{id}")
@@ -64,7 +62,7 @@ public class PDFGenerateController {
     }
 
     @GetMapping("/generate/stocklist/{date}")
-    public void generateCustomerBalPDF(HttpServletResponse response,@PathVariable String date) throws IOException {
+    public void generateCustomerBalPDF(HttpServletResponse response,@RequestBody pdfgetdata pdfgetdata) throws IOException {
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
         String currentDateTime= dateFormat.format(new Date());
@@ -73,7 +71,7 @@ public class PDFGenerateController {
         String headerValue = "attachment; filename=StockListPDF_"+ currentDateTime +".pdf";
         response.setHeader(headerKey,headerValue);
 
-        pdfStockListService.PdfGenerator(response, date);
+        pdfStockListService.PdfGenerator(response, pdfgetdata.getPdate(), pdfgetdata.getUserId());
     }
 
     @GetMapping("/generate/vatreport")
@@ -88,5 +86,16 @@ public class PDFGenerateController {
 
         pdfVatReport.PdfGenerator(response,currentDateTime);
     }
+
+
+}
+
+@Data
+class pdfgetdata {
+
+    private int id;
+    private int userId;
+    private String pdate;
+
 
 }

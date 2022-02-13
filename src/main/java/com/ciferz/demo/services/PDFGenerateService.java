@@ -20,7 +20,7 @@ public class PDFGenerateService {
     @Autowired
     SalesRepo salesRepo;
 
-    public void PdfGenerator(HttpServletResponse response, String date) throws IOException {
+    public void PdfGenerator(HttpServletResponse response, String date, int userId) throws IOException {
 
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document,response.getOutputStream());
@@ -59,7 +59,7 @@ public class PDFGenerateService {
 
 
         writeTableHeader(table);
-        writeTableData(table,date);
+        writeTableData(table,date,userId);
 
         document.add(table);
         document.add(paragraph1);
@@ -104,8 +104,8 @@ public class PDFGenerateService {
 
     }
 
-    public void writeTableData(PdfPTable table, String date){
-        List<SalesEntity> list = salesRepo.SDatess(date);
+    public void writeTableData(PdfPTable table, String date, int userId){
+        List<SalesEntity> list = salesRepo.SDatess(date,userId);
         double totalAmnt =0.0;
         double totalNetAmnt =0.0;
         double totalReceivedAmnt =0.0;

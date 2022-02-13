@@ -12,5 +12,6 @@ public interface PurchaseRepo extends JpaRepository<PurchaseEntity,Integer> {
 
     List<PurchaseEntity> findAllByOrderByIdDesc();
 
-    List<PurchaseEntity> getByUserId(int id);
+    @Query(value = "SELECT * FROM vansale.purchase where user_id = ?1 ORDER BY id DESC" ,nativeQuery = true)
+    List<PurchaseEntity> getByUserIdDesc(int id);
 }

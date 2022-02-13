@@ -46,6 +46,6 @@ public class SalesService {
     }
 
     public List<SalesEntity> getAllByUserID(int id) {
-        return salesRepo.getByUserId(id);
+        return salesRepo.getByUserIdDesc(id);
     }
 }
