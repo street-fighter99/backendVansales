@@ -45,8 +45,8 @@ public class SupplierService {
         return new ResponseEntity("UPDATED",HttpStatus.ACCEPTED);
     }
 
-    public List<SupplierEntity> getActiveCustomer() {
-        List<SupplierEntity> list = supplierRepo.getByIsactive(1);
+    public List<SupplierEntity> getActiveCustomer(int id) {
+        List<SupplierEntity> list = supplierRepo.getByIsactive(id);
         return list;
     }
 

@@ -53,7 +53,7 @@ public class CustomerController {
         return customerService.updateAll(customerModel);
     }
 
-    @GetMapping("/get/all/active")
+    @GetMapping("/get/all/active/{id}")
     public List<CustomerEntity> getAllActiveCustomer(@PathVariable int id){
         List<CustomerEntity> list = customerService.getActiveCustomer(id);
         return list;

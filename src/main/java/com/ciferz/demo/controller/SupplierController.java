@@ -41,9 +41,9 @@ public class SupplierController {
         return  supplierService.aciveStatus(id);
     }
 
-    @GetMapping("/get/all/active")
-    public List<SupplierEntity> getAllActiveCustomer(){
-        List<SupplierEntity> list = supplierService.getActiveCustomer();
+    @GetMapping("/get/all/active/{id}")
+    public List<SupplierEntity> getAllActiveCustomer(@PathVariable int id){
+        List<SupplierEntity> list = supplierService.getActiveCustomer(id);
         return list;
     }
     @PostMapping("/update/balance")
