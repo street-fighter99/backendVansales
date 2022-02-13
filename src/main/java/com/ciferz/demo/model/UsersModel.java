@@ -17,9 +17,13 @@ public class UsersModel {
 
     private String companyNameInArabic;
 
+    private int companyId;
+
     private String address;
 
     private String addressInArabic;
 
     private String vatNo;
+
+    private int isActive;
 }
