@@ -69,8 +69,6 @@ public class PDFCustomerBal {
         document.add(paragraph1);
         document.add(paragraph12);
         document.close();
-
-
     }
 
     public void writeTableHeader(PdfPTable table){
