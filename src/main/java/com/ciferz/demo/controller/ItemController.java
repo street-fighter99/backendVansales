@@ -2,6 +2,7 @@ package com.ciferz.demo.controller;
 
 import com.ciferz.demo.model.ItemModel;
 import com.ciferz.demo.model.SupplierModel;
+import com.ciferz.demo.reposetries.Customer.Entity.CustomerEntity;
 import com.ciferz.demo.reposetries.item.Entity.ItemEntity;
 import com.ciferz.demo.reposetries.supplier.Entity.SupplierEntity;
 import com.ciferz.demo.services.ItemService;
@@ -53,6 +54,12 @@ public class ItemController {
     @PostMapping("update/All")
     public  ResponseEntity updateAll(@RequestBody ItemModel itemModel){
         return itemService.updateAll(itemModel);
+    }
+
+    @GetMapping("/get/all/userId/{id}")
+    public List<ItemEntity> getAllByUserID(@PathVariable int id){
+        List<ItemEntity> list = itemService.getAllByUserID(id);
+        return list;
     }
 
 }

@@ -29,4 +29,7 @@ public class PurchaseModel {
     private double vat;
 
     private Date tdate;
+
+   private int userId;
+
 }

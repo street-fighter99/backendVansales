@@ -38,5 +38,10 @@ public class SalesController {
     public ResponseEntity updateIsActive(@RequestBody SalesModel salesModel){
         return  salesService.aciveStatus(salesModel);
     }
+    @GetMapping("/get/all/userId/{id}")
+    public List<SalesEntity> getAllByUserID(@PathVariable int id){
+        List<SalesEntity> list = salesService.getAllByUserID(id);
+        return list;
+    }
 
 }

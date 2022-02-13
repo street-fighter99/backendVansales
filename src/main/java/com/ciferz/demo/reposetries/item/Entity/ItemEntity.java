@@ -34,4 +34,7 @@ public class ItemEntity {
 
     @Column(name = "is_active")
     private int isactive;
+
+    @Column(name = "user_id")
+    private int userId;
 }

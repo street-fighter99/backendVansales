@@ -59,5 +59,11 @@ public class CustomerController {
         return list;
     }
 
+    @GetMapping("/get/all/userId/{id}")
+    public List<CustomerEntity> getAllByUserID(@PathVariable int id){
+        List<CustomerEntity> list = customerService.getAllByUserID(id);
+        return list;
+    }
+
 }
 

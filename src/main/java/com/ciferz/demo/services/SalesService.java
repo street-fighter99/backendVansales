@@ -44,4 +44,8 @@ public class SalesService {
         return new ResponseEntity("UPDATED",HttpStatus.ACCEPTED);
 
     }
+
+    public List<SalesEntity> getAllByUserID(int id) {
+        return salesRepo.getByUserId(id);
+    }
 }

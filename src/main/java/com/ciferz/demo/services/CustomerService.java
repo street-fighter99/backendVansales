@@ -3,7 +3,6 @@ package com.ciferz.demo.services;
 import com.ciferz.demo.model.CustomerModel;
 import com.ciferz.demo.reposetries.Customer.CustomerRepo;
 import com.ciferz.demo.reposetries.Customer.Entity.CustomerEntity;
-import com.ciferz.demo.reposetries.supplier.Entity.SupplierEntity;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +59,9 @@ public class CustomerService {
         customerRepo.updateAll(customerModel.getName(),customerModel.getVatNo(),customerModel.getCbalance(),customerModel.getIsactive(),customerModel.getAddress(),customerModel.getId());
         return new ResponseEntity("Customer details updated.",HttpStatus.ACCEPTED);
 
+    }
+
+    public List<CustomerEntity> getAllByUserID(int id) {
+        return customerRepo.getByUserId(id);
     }
 }

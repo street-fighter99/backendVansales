@@ -52,4 +52,10 @@ public class SupplierController {
         return supplierService.updateBal(supplierModel);
     }
 
+    @GetMapping("/get/all/userId/{id}")
+    public List<SupplierEntity> getAllByUserID(@PathVariable int id){
+        List<SupplierEntity> list = supplierService.getAllByUserID(id);
+        return list;
+    }
+
 }

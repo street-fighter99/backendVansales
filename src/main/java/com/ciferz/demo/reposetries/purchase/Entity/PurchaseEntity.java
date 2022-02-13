@@ -53,5 +53,8 @@ public class PurchaseEntity {
     @Column(name = "p_date")
     private Date tdate;
 
+    @Column(name = "user_id")
+    private int userId;
+
 
 }

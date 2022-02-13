@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Repository
@@ -25,4 +26,6 @@ public interface ItemRepo extends JpaRepository<ItemEntity,Integer> {
     @Modifying
     @Query(value = "UPDATE `vansale`.`item` SET `name` =?1, `suppliers` =?4, `stock` =?3, `tax` =?5, `is_active` =?2, `arabic_name`=?7 WHERE (`id` =?6)",nativeQuery = true)
     void updateAll(String name, int isactive, int stock, String suppliers, double vat, int id, String arabicname);
+
+    List<ItemEntity> getByUserId(int id);
 }

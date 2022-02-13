@@ -55,4 +55,8 @@ public class SupplierService {
 
         return new ResponseEntity("Balance updated",HttpStatus.ACCEPTED);
     }
+
+    public List<SupplierEntity> getAllByUserID(int id) {
+        return supplierRepo.getByUserId(id);
+    }
 }

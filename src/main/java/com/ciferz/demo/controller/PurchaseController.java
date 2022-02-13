@@ -35,4 +35,10 @@ public class PurchaseController {
         return  purchaseService.AddData(purchaseModels);
     }
 
+    @GetMapping("/get/all/userId/{id}")
+    public List<PurchaseEntity> getAllByUserID(@PathVariable int id){
+        List<PurchaseEntity> list = purchaseService.getAllByUserID(id);
+        return list;
+    }
+
 }

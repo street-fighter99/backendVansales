@@ -13,6 +13,7 @@ public class CustomerModel {
     private String vatNo;
     private int isactive;
     private double cbalance;
+    private int userId;
 
 
 }

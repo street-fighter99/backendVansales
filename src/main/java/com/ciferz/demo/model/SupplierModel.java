@@ -13,5 +13,6 @@ public class SupplierModel {
     private String vatNo;
     private double cbalance;
     private int isactive;
+    private int userId;
 
 }

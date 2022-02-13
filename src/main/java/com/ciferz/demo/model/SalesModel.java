@@ -33,5 +33,6 @@ public class SalesModel {
 
     private Date tdate;
 
+    private int userId;
 
 }

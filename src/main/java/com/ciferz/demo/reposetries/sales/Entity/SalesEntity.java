@@ -55,4 +55,6 @@ public class SalesEntity {
     @Column(name = "s_date")
     private Date tdate;
 
+    @Column(name = "user_id")
+    private int userId;
 }

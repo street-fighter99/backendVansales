@@ -24,6 +24,8 @@ public interface SalesRepo extends JpaRepository<SalesEntity,Integer> {
 
     List<SalesEntity> findAllByOrderByIdDesc();
 
+    List<SalesEntity> getByUserId(int id);
+
 
 //    List<SalesEntity> getBySDate(String date);
 }

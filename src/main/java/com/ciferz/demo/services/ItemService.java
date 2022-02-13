@@ -64,4 +64,8 @@ public class ItemService {
         return new ResponseEntity("Item details are updated.",HttpStatus.ACCEPTED);
 
     }
+
+    public List<ItemEntity> getAllByUserID(int id) {
+        return itemRepo.getByUserId(id);
+    }
 }

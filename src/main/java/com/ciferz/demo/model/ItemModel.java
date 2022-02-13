@@ -21,4 +21,6 @@ public class ItemModel {
 
     private int isactive;
 
+    private int userId;
+
 }

@@ -37,5 +37,8 @@ public class PurchaseService {
         return new  ResponseEntity("DATA ADDED", HttpStatus.ACCEPTED);
     }
 
+    public List<PurchaseEntity> getAllByUserID(int id) {
+        return purchaseRepo.getByUserId(id);
     }
+}
 
