@@ -51,7 +51,7 @@ public class CustomerService {
     }
 
     public List<CustomerEntity> getActiveCustomer(int id) {
-        List<CustomerEntity> list = customerRepo.getByIsactive(1);
+        List<CustomerEntity> list = customerRepo.getByactiveuserByuserID(id);
         return list;
     }
 

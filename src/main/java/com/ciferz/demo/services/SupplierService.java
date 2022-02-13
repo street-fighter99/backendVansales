@@ -46,7 +46,7 @@ public class SupplierService {
     }
 
     public List<SupplierEntity> getActiveCustomer(int id) {
-        List<SupplierEntity> list = supplierRepo.getByIsactive(id);
+        List<SupplierEntity> list = supplierRepo.getByactiveSuppById(id);
         return list;
     }
 

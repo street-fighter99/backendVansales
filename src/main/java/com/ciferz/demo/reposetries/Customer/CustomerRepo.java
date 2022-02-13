@@ -22,7 +22,7 @@ public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
     void updateBal(int id, double cbalance);
 
     @Query(value = "SELECT * FROM vansale.customer where user_id=?1 and is_active =1", nativeQuery = true)
-    List<CustomerEntity> getByIsactive(int i);
+    List<CustomerEntity> getByactiveuserByuserID(int i);
 
     @Query(value = "SELECT * FROM vansale.customer where id=?1", nativeQuery = true)
     List<CustomerEntity> getallById(int id);

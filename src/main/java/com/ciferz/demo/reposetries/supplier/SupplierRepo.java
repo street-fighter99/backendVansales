@@ -16,7 +16,7 @@ public interface SupplierRepo extends JpaRepository<SupplierEntity,Integer> {
     void update(int id, int isactive);
 
     @Query(value = "SELECT * FROM vansale.supplier where user_id=?1 and is_active = 1", nativeQuery = true)
-    List<SupplierEntity> getByIsactive(int i);
+    List<SupplierEntity> getByactiveSuppById(int i);
 
     @Modifying
     @Query(value = "update SupplierEntity De set De.cbalance=?2 where De.id=?1")
