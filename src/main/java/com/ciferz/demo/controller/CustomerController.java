@@ -54,8 +54,8 @@ public class CustomerController {
     }
 
     @GetMapping("/get/all/active")
-    public List<CustomerEntity> getAllActiveCustomer(){
-        List<CustomerEntity> list = customerService.getActiveCustomer();
+    public List<CustomerEntity> getAllActiveCustomer(@PathVariable int id){
+        List<CustomerEntity> list = customerService.getActiveCustomer(id);
         return list;
     }
 

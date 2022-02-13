@@ -21,6 +21,7 @@ public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
     @Query(value = "update CustomerEntity De set De.cbalance=?2 where De.id=?1")
     void updateBal(int id, double cbalance);
 
+    @Query(value = "SELECT * FROM vansale.customer where user_id=?1 and is_active =1", nativeQuery = true)
     List<CustomerEntity> getByIsactive(int i);
 
     @Query(value = "SELECT * FROM vansale.customer where id=?1", nativeQuery = true)
