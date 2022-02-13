@@ -39,7 +39,7 @@ public class UsersService {
             return new ResponseEntity("this number doesn't exist in the database.", HttpStatus.CONFLICT);
         }else
         {
-            return new ResponseEntity("This phone number is already Exist in the Database", HttpStatus.ACCEPTED);
+            return new ResponseEntity(usersEntity, HttpStatus.ACCEPTED);
         }
 
     }
