@@ -33,5 +33,11 @@ public class CompaniesController {
         return companiesService.getbyCompanyId(id);
     }
 
+    @PostMapping("/update/userId/{id}")
+    ResponseEntity UpdateStatus(@RequestBody int id)
+    {
+        return companiesService.updateStatus(id);
+    }
+
 
 }

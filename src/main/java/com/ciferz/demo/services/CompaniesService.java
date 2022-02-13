@@ -3,6 +3,7 @@ package com.ciferz.demo.services;
 import com.ciferz.demo.model.CompaniesModel;
 import com.ciferz.demo.reposetries.Companies.CompaniesRepo;
 import com.ciferz.demo.reposetries.Companies.Entity.CompaniesEntity;
+import com.ciferz.demo.reposetries.Users.Entity.UsersEntity;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,11 @@ public class CompaniesService {
     public CompaniesEntity getbyCompanyId(int id) {
 
         return companiesRepo.findById(id).get();
+    }
+
+    public ResponseEntity updateStatus(int id) {
+        CompaniesEntity companiesEntity=companiesRepo.findById(id).get();
+        companiesRepo.update(id,companiesEntity.getIsActive() == 1 ? 0 : 1);
+        return new ResponseEntity("UPDATED",HttpStatus.ACCEPTED);
     }
 }

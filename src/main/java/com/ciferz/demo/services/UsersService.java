@@ -1,6 +1,7 @@
 package com.ciferz.demo.services;
 
 import com.ciferz.demo.model.UsersModel;
+import com.ciferz.demo.reposetries.Customer.Entity.CustomerEntity;
 import com.ciferz.demo.reposetries.Users.Entity.UsersEntity;
 import com.ciferz.demo.reposetries.Users.UsersRepo;
 import org.modelmapper.ModelMapper;
@@ -26,7 +27,7 @@ public class UsersService {
 
 
     public ResponseEntity updateByPhoneNo(UsersModel usersModel) {
-        usersRepo.updates(usersModel.getName(),usersModel.getCompanyName(),usersModel.getCompanyNameInArabic(),usersModel.getAddress(),usersModel.getAddressInArabic(),usersModel.getVatNo(),usersModel.getPhone());
+        usersRepo.updates(usersModel.getName(),usersModel.getCompanyName(),usersModel.getCompanyNameInArabic(),usersModel.getAddress(),usersModel.getAddressInArabic(),usersModel.getVatNo(),usersModel.getPhone(),usersModel.getCompanyId(),usersModel.getIsActive());
 
         return new ResponseEntity("Upadted",HttpStatus.ACCEPTED);
     }
@@ -58,5 +59,11 @@ public class UsersService {
     public List<UsersEntity> getAllByCompanyId(int id) {
         List<UsersEntity> list = usersRepo.getByCompanyId(id);
         return list;
+    }
+
+    public ResponseEntity updateStatus(int id) {
+        UsersEntity usersEntity=usersRepo.findById(id).get();
+        usersRepo.update(id,usersEntity.getIsActive() == 1 ? 0 : 1);
+        return new ResponseEntity("UPDATED",HttpStatus.ACCEPTED);
     }
 }

@@ -49,6 +49,11 @@ public class UsersController {
         return usersService.addUser(usersModel);
     }
 
+    @PostMapping("/update/userId/{id}")
+    ResponseEntity UpdateStatus(@RequestBody int id)
+    {
+        return usersService.updateStatus(id);
+    }
 
 
 }
