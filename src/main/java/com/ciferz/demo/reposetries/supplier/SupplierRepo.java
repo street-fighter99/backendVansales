@@ -23,4 +23,7 @@ public interface SupplierRepo extends JpaRepository<SupplierEntity,Integer> {
     void updateBal(int id, double cbalance);
 
     List<SupplierEntity> getByUserId(int id);
+
+    @Query(value = "SELECT * FROM vansale.supplier where supp_id = ?1", nativeQuery = true)
+    SupplierEntity findBySuppId(int id);
 }

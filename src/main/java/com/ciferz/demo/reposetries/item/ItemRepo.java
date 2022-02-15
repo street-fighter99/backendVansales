@@ -28,4 +28,7 @@ public interface ItemRepo extends JpaRepository<ItemEntity,Integer> {
     void updateAll(String name, int isactive, int stock, String suppliers, double vat, int id, String arabicname);
 
     List<ItemEntity> getByUserId(int id);
+
+    @Query(value = "select * from `vansale`.`item` where id =?1",nativeQuery = true)
+    ItemEntity getByIds(int id);
 }

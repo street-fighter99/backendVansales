@@ -31,7 +31,7 @@ public class ItemService {
 
 
     public ResponseEntity AddData(List<ItemModel> itemModels) {
-        ItemEntity itemEntity = getById(itemModels.get(0).getId());
+        ItemEntity itemEntity = itemRepo.getByIds(itemModels.get(0).getId());
         if (itemEntity!=null){
             return new  ResponseEntity("DATA IS ALREADY THERE.", HttpStatus.ACCEPTED);
         }
@@ -49,7 +49,7 @@ public class ItemService {
     }
 
     public ItemEntity getById(int id) {
-        ItemEntity itemEntity = itemRepo.getById(id);
+        ItemEntity itemEntity = itemRepo.findById(id).get();
         return itemEntity;
     }
 
