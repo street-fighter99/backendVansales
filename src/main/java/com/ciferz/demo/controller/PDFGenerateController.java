@@ -36,7 +36,7 @@ public class PDFGenerateController {
 
 
     @GetMapping("/generate/pdf/sales/{pdate}/{userID}")
-    public void generatePDF(HttpServletResponse response, @PathVariable("date") String pdate,@PathVariable("userID") int userID) throws IOException {
+    public void generatePDF(HttpServletResponse response, @PathVariable("pdate") String pdate,@PathVariable("userID") int userID) throws IOException {
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
         String currentDateTime= dateFormat.format(new Date());
@@ -86,16 +86,6 @@ public class PDFGenerateController {
 
         pdfVatReport.PdfGenerator(response,currentDateTime,userId);
     }
-
-
-}
-
-@Data
-class pdfgetdata {
-
-    private int id;
-    private int userId;
-    private String pdate;
 
 
 }

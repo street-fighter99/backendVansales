@@ -31,9 +31,16 @@ public class ItemService {
 
 
     public ResponseEntity AddData(List<ItemModel> itemModels) {
+        ItemEntity itemEntity = getById(itemModels.get(0).getId());
+        if (itemEntity!=null){
+            return new  ResponseEntity("DATA IS ALREADY THERE.", HttpStatus.ACCEPTED);
+        }
+        else{
+
         List<ItemEntity> itemEntities=modelMapper.map(itemModels,new TypeToken<List<ItemEntity>>(){}.getType());
         itemRepo.saveAllAndFlush(itemEntities);
-        return new  ResponseEntity("DATA ADDED", HttpStatus.ACCEPTED);
+        return new  ResponseEntity("DATA ADDED.", HttpStatus.ACCEPTED);
+    }
     }
 
     public ResponseEntity aciveStatus(ItemModel itemModel) {

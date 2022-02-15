@@ -27,7 +27,7 @@ public class UsersService {
 
 
     public ResponseEntity updateByPhoneNo(UsersModel usersModel) {
-        usersRepo.updates(usersModel.getName(),usersModel.getCompanyName(),usersModel.getCompanyNameInArabic(),usersModel.getAddress(),usersModel.getAddressInArabic(),usersModel.getVatNo(),usersModel.getPhone(),usersModel.getCompanyId(),usersModel.getIsActive());
+        usersRepo.updates(usersModel.getName(),usersModel.getCompanyName(),usersModel.getCompanyNameInArabic(),usersModel.getAddress(),usersModel.getAddressInArabic(),usersModel.getVatNo(),usersModel.getPhone());
 
         return new ResponseEntity("Upadted",HttpStatus.ACCEPTED);
     }
@@ -45,10 +45,17 @@ public class UsersService {
     }
 
     public ResponseEntity addUser(UsersModel usersModel) {
-        UsersEntity users=modelMapper.map(usersModel,UsersEntity.class);
-        usersRepo.saveAndFlush(users);
-        return new ResponseEntity("Data has been saved.",HttpStatus.ACCEPTED);
+        UsersEntity usersEntity = getuserPhone(usersModel.getPhone());
 
+        if (usersEntity!=null){
+
+            return  new ResponseEntity("THE DATA HAS BEEN THERE.",HttpStatus.CONFLICT);
+
+        }else {
+            UsersEntity users = modelMapper.map(usersModel, UsersEntity.class);
+            usersRepo.saveAndFlush(users);
+            return new ResponseEntity("Data has been saved.", HttpStatus.ACCEPTED);
+        }
     }
 
     public UsersEntity getuserPhone(String phone) {

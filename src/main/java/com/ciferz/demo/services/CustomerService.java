@@ -32,10 +32,17 @@ public class CustomerService {
     }
 
     public ResponseEntity addDatas(List<CustomerModel> customerModels) {
-        List<CustomerEntity> customerEntities=modelMapper.map(customerModels,new TypeToken<List<CustomerEntity>>(){}.getType());
-        customerRepo.saveAllAndFlush(customerEntities);
-        return new ResponseEntity("DATA HAS BEEN ADDED SUCCESSFULLY", HttpStatus.ACCEPTED);
-    }
+        CustomerEntity customerEntity = getById(customerModels.get(0).getId());
+        if (customerEntity !=null){
+            return new ResponseEntity("THIS CUSTOMER IS ALREADY IN THE DATABASE", HttpStatus.CONFLICT);
+        }
+        else {
+            List<CustomerEntity> customerEntities = modelMapper.map(customerModels, new TypeToken<List<CustomerEntity>>() {
+            }.getType());
+            customerRepo.saveAllAndFlush(customerEntities);
+            return new ResponseEntity("DATA HAS BEEN ADDED SUCCESSFULLY", HttpStatus.ACCEPTED);
+        }
+        }
 
     public ResponseEntity aciveStatus(int id) {
         CustomerEntity customerEntity=customerRepo.findById(id).get();

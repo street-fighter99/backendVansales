@@ -13,8 +13,8 @@ import java.util.List;
 public interface UsersRepo extends JpaRepository<UsersEntity,Integer> {
 
     @Modifying
-    @Query(value = "UPDATE `vansale`.`users` SET `name` =?1, `company_name` =?2, `company_name_in_arabic`=?3, `address` =?4,`address_in_arabic` =?5, `vat_no` =?6, `company_id`=?8, `is_active`=?9 WHERE (`phone` =?7)",nativeQuery = true)
-    void updates(String name, String companyName, String companyNameInArabic, String address, String addressInArabic, String vatNo, String phone, int companyId, int isActive);
+    @Query(value = "UPDATE `vansale`.`users` SET `name` =?1, `company_name` =?2, `company_name_in_arabic`=?3, `address` =?4,`address_in_arabic` =?5, `vat_no` =?6 WHERE (`phone` =?7)",nativeQuery = true)
+    void updates(String name, String companyName, String companyNameInArabic, String address, String addressInArabic, String vatNo, String phone);
 
     UsersEntity getByPhone(String phone);
 

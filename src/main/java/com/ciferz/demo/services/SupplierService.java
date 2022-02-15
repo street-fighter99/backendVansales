@@ -23,10 +23,19 @@ public class SupplierService {
     private final ModelMapper modelMapper=new ModelMapper();
 
     public ResponseEntity AddData(List<SupplierModel> supplierModel) {
-        List<SupplierEntity> supplierEntity=modelMapper.map(supplierModel,new TypeToken<List<SupplierEntity>>(){}.getType());
-        supplierRepo.saveAllAndFlush(supplierEntity);
-        return new  ResponseEntity("DATA ADDED", HttpStatus.ACCEPTED);
+        SupplierEntity supplierEntitys = getById(supplierModel.get(0).getId());
+        if (supplierEntitys!=null){
 
+            return new ResponseEntity("DATA IS ALREADY THERE.", HttpStatus.ACCEPTED);
+
+        } else {
+
+            List<SupplierEntity> supplierEntity = modelMapper.map(supplierModel, new TypeToken<List<SupplierEntity>>() {
+            }.getType());
+            supplierRepo.saveAllAndFlush(supplierEntity);
+            return new ResponseEntity("DATA ADDED.", HttpStatus.ACCEPTED);
+
+        }
     }
 
     public List<SupplierEntity> AllTheSupplier() {

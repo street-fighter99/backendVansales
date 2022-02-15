@@ -32,6 +32,7 @@ public class SupplierController {
     }
     @PostMapping("/Add")
     public ResponseEntity SaveData(@RequestBody List<SupplierModel> supplierModel){
+
         return  supplierService.AddData(supplierModel);
 
     }
