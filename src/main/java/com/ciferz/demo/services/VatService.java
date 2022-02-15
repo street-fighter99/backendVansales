@@ -23,9 +23,15 @@ public class VatService {
     }
 
     public ResponseEntity addData(VatModel vatModel) {
+        VatEntity vat = vatRepo.findByVat();
+
+        if (vat!=null){
+            return new ResponseEntity("the vat has already been there.",HttpStatus.CONFLICT);
+        }else {
         VatEntity vatEntity = modelMapper.map(vatModel,VatEntity.class);
         vatRepo.saveAndFlush(vatEntity);
 
         return new ResponseEntity<>("added", HttpStatus.ACCEPTED);
+    }
     }
 }

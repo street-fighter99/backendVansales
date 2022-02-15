@@ -37,9 +37,12 @@ public class UsersService {
         if (usersEntity == null){
 
             return new ResponseEntity("this number doesn't exist in the database.", HttpStatus.CONFLICT);
-        }else
-        {
-            return new ResponseEntity(usersEntity, HttpStatus.ACCEPTED);
+        }else {
+            if (usersEntity.getIsActive() != 1) {
+                return new ResponseEntity("This user is not active", HttpStatus.CONFLICT);
+            } else {
+                return new ResponseEntity(usersEntity, HttpStatus.ACCEPTED);
+            }
         }
 
     }
