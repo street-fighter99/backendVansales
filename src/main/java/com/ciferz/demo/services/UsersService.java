@@ -36,7 +36,7 @@ public class UsersService {
         UsersEntity usersEntity = usersRepo.getByPhone(phone);
         if (usersEntity == null){
 
-            return new ResponseEntity("this number doesn't exist in the database.", HttpStatus.CONFLICT);
+            return new ResponseEntity("this number doesn't exist in the database.", HttpStatus.NOT_FOUND);
         }else {
             if (usersEntity.getIsActive() != 1) {
                 return new ResponseEntity("This user is not active", HttpStatus.CONFLICT);
