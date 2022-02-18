@@ -14,7 +14,7 @@ import java.util.List;
 public interface SalesRepo extends JpaRepository<SalesEntity,Integer> {
 
     @Modifying
-    @Query(value = "update SalesEntity De set De.isactive=?2 where De.id=?1 ")
+    @Query(value = "update SalesEntity De set De.isactive=?2 where De.id=?1  ")
     void update(int id, int isactive);
 
 

@@ -104,7 +104,7 @@ public class PDFStockListService {
 
         int i = 1;
         for (StockChk stock : list){
-            i++;
+
             table.addCell(String.valueOf(i));
             table.addCell(String.valueOf(stock.getId()));
             table.addCell(String.valueOf(stock.getName()));
@@ -118,6 +118,7 @@ public class PDFStockListService {
             TPrice = TPrice + stock.getPrice();
             TotalTPrice = TotalTPrice + totalPrice;
 
+            i++;
         }
 
         Font font = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE);

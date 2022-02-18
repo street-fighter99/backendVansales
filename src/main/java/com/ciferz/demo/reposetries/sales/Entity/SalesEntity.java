@@ -16,8 +16,12 @@ import java.util.Date;
 public class SalesEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
+    @Column(name = "sale_id")
+    private int saleId;
 
     @Column(name = "customer_id")
     private int customerId;
@@ -53,8 +57,11 @@ public class SalesEntity {
     private double vat;
 
     @Column(name = "s_date")
-    private Date tdate;
+    private String tdate;
 
     @Column(name = "user_id")
     private int userId;
+
+    @Column(name = "s_time")
+    private String ttime;
 }

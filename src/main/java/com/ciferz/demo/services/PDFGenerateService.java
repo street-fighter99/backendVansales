@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static java.lang.Math.round;
+
 @Service
 public class PDFGenerateService {
 
@@ -114,14 +116,14 @@ public class PDFGenerateService {
 
         int i = 1;
         for (SalesEntity sales : list){
-            i=i++;
+
             table.addCell(String.valueOf(i));
-            table.addCell(String.valueOf(sales.getId()));
+            table.addCell(String.valueOf(sales.getSaleId()));
             table.addCell(String.valueOf(sales.getCustomerId()));
 //            table.addCell(sales.getItemList());
+            table.addCell(String.valueOf(sales.getVat()));
             table.addCell(String.valueOf(sales.getDiscount()));
             table.addCell(String.valueOf(sales.getAftDiscount()));
-            table.addCell(String.valueOf(sales.getVat()));
             table.addCell(String.valueOf(sales.getTotalAmount()));
             table.addCell(String.valueOf(sales.getNetAmount()));
             table.addCell(String.valueOf(sales.getRecievedAmount()));
@@ -136,6 +138,7 @@ public class PDFGenerateService {
             totalTBalance = totalTBalance + sales.getTotalBalance();
 
 
+            i++;
         }
 
         Font font = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE);
@@ -149,13 +152,11 @@ public class PDFGenerateService {
         cells.setVerticalAlignment(Element.ALIGN_CENTER);
         cells.setPaddingRight(10);
         table.addCell(cells);
-        table.addCell(String.valueOf(totalAmnt));
-        table.addCell(String.valueOf(totalNetAmnt));
-        table.addCell(String.valueOf(totalReceivedAmnt));
-        table.addCell(String.valueOf(totalBalance));
-        table.addCell(String.valueOf(totalTBalance));
-
-
+        table.addCell(String.format("%.2f",totalAmnt));
+        table.addCell(String.format("%.2f",totalNetAmnt));
+        table.addCell(String.format("%.2f",totalReceivedAmnt));
+        table.addCell(String.format("%.2f",totalBalance));
+        table.addCell(String.format("%.2f",totalTBalance));
 
     }
 

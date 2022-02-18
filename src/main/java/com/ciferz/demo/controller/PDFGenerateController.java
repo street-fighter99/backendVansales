@@ -77,8 +77,9 @@ public class PDFGenerateController {
     @GetMapping("/generate/vatreport/{userId}")
     public void generateVatReport(HttpServletResponse response,@PathVariable int userId) throws IOException {
         response.setContentType("application/pdf");
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String currentDateTime= dateFormat.format(new Date());
+        System.out.println(currentDateTime);
 
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=VatReportPDF_"+ currentDateTime +".pdf";

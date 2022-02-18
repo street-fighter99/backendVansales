@@ -98,7 +98,7 @@ public class PDFVatReport {
 
         int i = 1;
         for (SalesEntity sales: list){
-            i++;
+
             table.addCell(String.valueOf(i));
             table.addCell(String.valueOf(sales.getTdate()));
             CustomerEntity customerEntity = customerRepo.getById(sales.getCustomerId());
@@ -107,7 +107,7 @@ public class PDFVatReport {
             table.addCell(String.valueOf(sales.getTotalAmount()));
             table.addCell(String.valueOf(sales.getVat()));
             table.addCell(String.valueOf(sales.getAftDiscount()));
-
+            i++;
 
         }
 

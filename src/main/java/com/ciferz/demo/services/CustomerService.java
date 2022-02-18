@@ -27,8 +27,7 @@ public class CustomerService {
     }
 
     public CustomerEntity getById(int id) {
-        CustomerEntity customerEntity=customerRepo.findById(id).get();
-        return customerEntity;
+        return customerRepo.findById(id).isPresent() ? customerRepo.findById(id).get() : null;
     }
 
     public ResponseEntity addDatas(List<CustomerModel> customerModels) {

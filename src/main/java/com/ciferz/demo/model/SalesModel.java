@@ -9,6 +9,8 @@ public class SalesModel {
 
     private int id;
 
+    private int saleId;
+
     private int customerId;
 
     private String itemList;
@@ -31,8 +33,10 @@ public class SalesModel {
 
     private double vat;
 
-    private Date tdate;
+    private String tdate;
 
     private int userId;
+
+    private String ttime;
 
 }

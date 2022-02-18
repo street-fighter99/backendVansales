@@ -23,7 +23,8 @@ public class SupplierService {
     private final ModelMapper modelMapper=new ModelMapper();
 
     public ResponseEntity AddData(List<SupplierModel> supplierModel) {
-        SupplierEntity supplierEntitys = supplierRepo.findBySuppId(supplierModel.get(0).getId());
+//        SupplierEntity supplierEntitys = supplierRepo.findBySuppId(supplierModel.get(0).getId());
+        SupplierEntity supplierEntitys = getById(supplierModel.get(0).getId());
         if (supplierEntitys != null){
 
             return new ResponseEntity("DATA IS ALREADY THERE.", HttpStatus.CONFLICT);
@@ -44,7 +45,7 @@ public class SupplierService {
     }
 
     public SupplierEntity getById(int id) {
-        return supplierRepo.findById(id).isPresent()?null:supplierRepo.findById(id).get();
+        return supplierRepo.findById(id).isPresent()?supplierRepo.findById(id).get():null;
     }
 
     public ResponseEntity aciveStatus(int id) {
