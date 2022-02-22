@@ -20,6 +20,10 @@ public class CustomerEntity {
     @Column(name = "id")
     private int id;
 
+
+    @Column(name = "customer_id")
+    private int customerId;
+
     @Column(name = "name")
     private String name;
 

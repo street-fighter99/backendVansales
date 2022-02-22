@@ -53,6 +53,12 @@ public class CustomerController {
         return customerService.updateAll(customerModel);
     }
 
+    @PostMapping("/deleteBy/{customerId}/{userId}")
+    public ResponseEntity deleteAll(@PathVariable("customerId") int cudtomerId,@PathVariable("userId") int userId){
+
+        return customerService.deleteBycustomerID(cudtomerId,userId);
+    }
+
     @GetMapping("/get/all/active/{id}")
     public List<CustomerEntity> getAllActiveCustomer(@PathVariable int id){
         List<CustomerEntity> list = customerService.getActiveCustomer(id);

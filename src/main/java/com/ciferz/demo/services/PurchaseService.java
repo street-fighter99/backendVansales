@@ -40,5 +40,17 @@ public class PurchaseService {
     public List<PurchaseEntity> getAllByUserID(int id) {
         return purchaseRepo.getByUserIdDesc(id);
     }
+
+    public ResponseEntity updateAll(PurchaseModel pModel) {
+        PurchaseEntity purchaseEntity = purchaseRepo.updateAll(pModel.getId(),pModel.getSupplierId(),pModel.getItemList()
+        ,pModel.getTotalAmount(),pModel.getDiscount(),pModel.getAftDiscount(),pModel.getNetAmount(),pModel.getPaidAmount()
+        ,pModel.getBalance(),pModel.getTotalBalance(),pModel.getVat(),pModel.getTdate(),pModel.getUserId());
+        return new ResponseEntity(purchaseEntity,HttpStatus.ACCEPTED);
+    }
+
+    public ResponseEntity deleteBYPURID(int userID, int purchaseID) {
+        PurchaseEntity purchase = purchaseRepo.delBYPURID(userID,purchaseID);
+        return new ResponseEntity(purchase,HttpStatus.ACCEPTED);
+    }
 }
 

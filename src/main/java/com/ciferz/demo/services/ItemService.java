@@ -75,4 +75,11 @@ public class ItemService {
     public List<ItemEntity> getAllByUserID(int id) {
         return itemRepo.getByUserId(id);
     }
+
+    public ResponseEntity deleteBy(int userId, int itemId) {
+
+        itemRepo.deleteByUsrandItemID(userId,itemId);
+        return new ResponseEntity("DATA HAS BEEN DELETED.",HttpStatus.ACCEPTED);
+
+    }
 }

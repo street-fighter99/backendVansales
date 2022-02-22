@@ -18,6 +18,9 @@ public class PurchaseEntity {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "purchase_id")
+    private int purchaseId;
+
     @Column(name = "supplier_id")
     private int supplierId;
 

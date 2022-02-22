@@ -56,6 +56,12 @@ public class ItemController {
         return itemService.updateAll(itemModel);
     }
 
+    @PostMapping("deleteBY/{userId}/{itemId}")
+    public  ResponseEntity deleteByuserIDandItemID(@PathVariable("userId") int userId,@PathVariable("itemId") int itemId){
+        return itemService.deleteBy(userId,itemId);
+    }
+
+
     @GetMapping("/get/all/userId/{id}")
     public List<ItemEntity> getAllByUserID(@PathVariable int id){
         List<ItemEntity> list = itemService.getAllByUserID(id);

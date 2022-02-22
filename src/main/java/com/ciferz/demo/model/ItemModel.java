@@ -9,6 +9,8 @@ public class ItemModel {
 
     private int id;
 
+    private int itemId;
+
     private String name;
 
     private String arabicname;

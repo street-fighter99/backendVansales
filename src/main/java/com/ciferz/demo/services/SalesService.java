@@ -48,4 +48,17 @@ public class SalesService {
     public List<SalesEntity> getAllByUserID(int id) {
         return salesRepo.getByUserIdDesc(id);
     }
+
+    public ResponseEntity updateAll(SalesModel salesModel) {
+        SalesEntity sales = salesRepo.updateAll(salesModel.getSaleId(),salesModel.getCustomerId(),salesModel.getItemList()
+                ,salesModel.getTotalAmount(),salesModel.getDiscount(),salesModel.getAftDiscount(),salesModel.getNetAmount(),salesModel.getRecievedAmount()
+                ,salesModel.getBalance(),salesModel.getTotalBalance(),salesModel.getIsactive(),salesModel.getVat(),salesModel.getTdate(),salesModel.getUserId());
+
+        return new ResponseEntity(sales,HttpStatus.ACCEPTED);
+    }
+
+    public ResponseEntity deleteBYSALEsID(int userID, int salesID) {
+        salesRepo.DELBYDSALID(userID,salesID);
+        return new ResponseEntity("SALES DELETED SUCCESSFULLY.",HttpStatus.ACCEPTED);
+    }
 }

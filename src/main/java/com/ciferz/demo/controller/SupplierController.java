@@ -59,4 +59,10 @@ public class SupplierController {
         return list;
     }
 
+    @PostMapping("/update/allCol")
+    public ResponseEntity updateAllCol(@RequestBody SupplierModel supplierModel){
+
+        return supplierService.updateAllCol(supplierModel);
+    }
+
 }

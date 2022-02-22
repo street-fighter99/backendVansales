@@ -68,4 +68,10 @@ public class SupplierService {
     public List<SupplierEntity> getAllByUserID(int id) {
         return supplierRepo.getByUserId(id);
     }
+
+    public ResponseEntity updateAllCol(SupplierModel supplierModel) {
+        SupplierEntity supplier = supplierRepo.updateAllCol(supplierModel.getSuppId(),supplierModel.getName()
+        ,supplierModel.getAddress(),supplierModel.getVatNo(),supplierModel.getCbalance(),supplierModel.getIsactive()
+        ,supplierModel.getUserId());
+    }
 }

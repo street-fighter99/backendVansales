@@ -84,11 +84,11 @@ public class PDFVatReport {
         table.addCell(cell);
         cell.setPhrase(new Phrase("VAT No.",font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("Net Amount",font));
+        cell.setPhrase(new Phrase("Net Total(Aft Discount)",font));
         table.addCell(cell);
         cell.setPhrase(new Phrase("VAT",font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("Net Total(Aft Discount)",font));
+        cell.setPhrase(new Phrase("Net Amount",font));
         table.addCell(cell);
     }
 
@@ -104,9 +104,9 @@ public class PDFVatReport {
             CustomerEntity customerEntity = customerRepo.getById(sales.getCustomerId());
             table.addCell(String.valueOf(customerEntity.getName()));
             table.addCell(String.valueOf(customerEntity.getVatNo()));
-            table.addCell(String.valueOf(sales.getTotalAmount()));
-            table.addCell(String.valueOf(sales.getVat()));
             table.addCell(String.valueOf(sales.getAftDiscount()));
+            table.addCell(String.valueOf(sales.getVat()));
+            table.addCell(String.valueOf(sales.getNetAmount()));
             i++;
 
         }

@@ -15,8 +15,11 @@ import javax.persistence.*;
 public class SupplierEntity {
 
     @Id
-    @Column(name = "supp_id")
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "supp_id")
+    private int suppId;
 
     @Column(name = "name")
     private String name;

@@ -70,4 +70,9 @@ public class CustomerService {
     public List<CustomerEntity> getAllByUserID(int id) {
         return customerRepo.getByUserId(id);
     }
+
+    public ResponseEntity deleteBycustomerID(int cudtomerId, int userId) {
+        customerRepo.deleteBYcustomerID(cudtomerId,userId);
+        return new ResponseEntity("data has been deleted",HttpStatus.ACCEPTED);
+    }
 }

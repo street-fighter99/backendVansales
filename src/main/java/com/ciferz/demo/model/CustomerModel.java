@@ -6,6 +6,7 @@ import lombok.Data;
 public class CustomerModel {
 
     private int id;
+    private int customerId;
     private String name;
     //private String aname;
     private String address;

@@ -8,6 +8,8 @@ public class PurchaseModel {
 
     private int id;
 
+    private int purchaseId;
+
     private int supplierId;
 
     private String itemList;

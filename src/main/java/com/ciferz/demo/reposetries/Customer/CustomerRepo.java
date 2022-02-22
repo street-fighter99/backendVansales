@@ -32,4 +32,7 @@ public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
     void updateAll(String name, String vatNo, double cbalance, int isactive, String address, int id);
 
     List<CustomerEntity> getByUserId(int id);
+
+    @Query(value = "delete from `vansale`.`customer` where customer_id = ?1 and user_id = ?2 limit 1", nativeQuery = true)
+    void deleteBYcustomerID(int cudtomerId, int userId);
 }

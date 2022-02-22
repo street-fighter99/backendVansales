@@ -28,6 +28,12 @@ public interface SalesRepo extends JpaRepository<SalesEntity,Integer> {
 
     List<SalesEntity> findAllByUserId(int userId);
 
+    @Query(value = "update vansale.sales set sale_id =?1, customer_id=?2, item_list=?3, total_amount = ?4, discount = ?5, aftdiscount=?6, net_amount = ?7, recieved_amount = ?8,balance = ?9, total_balance = ?10,is_active = ?11,vat = ?12,s_date = ?13, user_id = ?14 where (`user_id` =?14) and (`sales_id` = ?1)",nativeQuery = true)
+    SalesEntity updateAll(int saleId, int customerId, String itemList, double totalAmount, double discount, double aftDiscount, double netAmount, double recievedAmount, double balance, double totalBalance,int isActive, double vat, String tdate, int userId);
+
+    @Query(value = "delete from `vansale`.`sales` where (`user_id` =?1) and (`sale_id` = ?2)")
+    void DELBYDSALID(int userID, int salesID);
+
 
 //    List<SalesEntity> getBySDate(String date);
 }

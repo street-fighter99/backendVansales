@@ -44,4 +44,16 @@ public class SalesController {
         return list;
     }
 
+    @PostMapping("update/all")
+    public ResponseEntity updateAll(@RequestBody SalesModel salesModel){
+        return salesService.updateAll(salesModel);
+    }
+
+    @PostMapping("delete/by/{userID}/{salesID}")
+    public  ResponseEntity deleteBYItem(@PathVariable("userID") int userID,@PathVariable("salesID") int salesID){
+
+        return salesService.deleteBYSALEsID(userID,salesID);
+
+    }
+
 }
