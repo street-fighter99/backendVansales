@@ -24,8 +24,8 @@ public interface ItemRepo extends JpaRepository<ItemEntity,Integer> {
     void updateStocks(int id, int stock);
 
     @Modifying
-    @Query(value = "UPDATE `vansale`.`item` SET `name` =?1, `suppliers` =?4, `stock` =?3, `tax` =?5, `is_active` =?2, `arabic_name`=?7 WHERE (`id` =?6)",nativeQuery = true)
-    void updateAll(String name, int isactive, int stock, String suppliers, double vat, int id, String arabicname);
+    @Query(value = "UPDATE `vansale`.`item` SET `name` =?1, `suppliers` =?4, `stock` =?3, `vat` =?5, `is_active` =?2, `arabic_name`=?7,`item_id` =?6  WHERE (`item_id` =?6) and (`user_id` = ?8)",nativeQuery = true)
+    void updateAll(String name, int isactive, int stock, String suppliers, double vat, int id, String arabicname, int userId);
 
     List<ItemEntity> getByUserId(int id);
 

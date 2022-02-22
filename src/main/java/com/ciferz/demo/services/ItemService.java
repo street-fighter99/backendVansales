@@ -67,7 +67,7 @@ public class ItemService {
 
     public ResponseEntity updateAll(ItemModel itemModel) {
 
-        itemRepo.updateAll(itemModel.getName(),itemModel.getIsactive(),itemModel.getStock(),itemModel.getSuppliers(),itemModel.getVat(),itemModel.getId(),itemModel.getArabicname());
+        itemRepo.updateAll(itemModel.getName(),itemModel.getIsactive(),itemModel.getStock(),itemModel.getSuppliers(),itemModel.getVat(),itemModel.getItemId(),itemModel.getArabicname(),itemModel.getUserId());
         return new ResponseEntity("Item details are updated.",HttpStatus.ACCEPTED);
 
     }

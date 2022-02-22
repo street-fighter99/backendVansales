@@ -73,5 +73,12 @@ public class SupplierService {
         SupplierEntity supplier = supplierRepo.updateAllCol(supplierModel.getSuppId(),supplierModel.getName()
         ,supplierModel.getAddress(),supplierModel.getVatNo(),supplierModel.getCbalance(),supplierModel.getIsactive()
         ,supplierModel.getUserId());
+
+        return new ResponseEntity(supplier,HttpStatus.ACCEPTED);
+    }
+
+    public ResponseEntity deleteBySuppID(int suppID, int userID) {
+        supplierRepo.deleteBYSuppID(suppID,userID);
+        return new ResponseEntity("data has beem deleted successfully",HttpStatus.ACCEPTED);
     }
 }
