@@ -18,7 +18,6 @@ public class ItemEntity {
     @Column(name = "id")
     private int id;
 
-    @Id
     @Column(name = "item_id")
     private int itemId;
 
