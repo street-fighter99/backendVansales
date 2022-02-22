@@ -59,13 +59,13 @@ public class SupplierController {
         return list;
     }
 
-    @PostMapping("/update/allCol")
+    @PostMapping("/update/all")
     public ResponseEntity updateAllCol(@RequestBody SupplierModel supplierModel){
 
         return supplierService.updateAllCol(supplierModel);
     }
 
-    @PostMapping("/delete/By/{suppID}/{userID}")
+    @PostMapping("deleteBy/{suppID}/{userID}")
     public ResponseEntity deleteBySuppID(@PathVariable("suppID") int suppID, @PathVariable("userID") int userID){
 
         return supplierService.deleteBySuppID(suppID,userID);

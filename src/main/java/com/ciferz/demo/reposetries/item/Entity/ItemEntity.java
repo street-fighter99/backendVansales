@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class ItemEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 

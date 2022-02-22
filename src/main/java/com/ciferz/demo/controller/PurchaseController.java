@@ -25,14 +25,14 @@ public class PurchaseController {
         return list;
     }
 
-    @PostMapping("update/by/purchaseID")
+    @PostMapping("update/all")
     public  ResponseEntity updateByITem(@RequestBody PurchaseModel purchaseModel){
 
         return purchaseService.updateAll(purchaseModel);
 
     }
 
-    @PostMapping("delete/by/{userID}/{purchaseID}")
+    @PostMapping("deleteBy/{userID}/{purchaseID}")
     public  ResponseEntity deleteBYItem(@PathVariable("userID") int userID,@PathVariable("purchaseID") int purchaseID){
 
         return purchaseService.deleteBYPURID(userID,purchaseID);
