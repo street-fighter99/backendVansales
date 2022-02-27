@@ -24,11 +24,16 @@ public interface SupplierRepo extends JpaRepository<SupplierEntity,Integer> {
 
     List<SupplierEntity> getByUserId(int id);
 
+    @Modifying
     @Query(value = "update `vansale`.`supplier` set supp_id = ?1, name = ?2, address = ?3, vat_no = ?4, cbalance = ?5, is_active = ?6 where (`user_id` = ?7) and (`supp_id` = ?1)",nativeQuery = true)
-    SupplierEntity updateAllCol(int suppId, String name, String address, String vatNo, double cbalance, int isactive, int userId);
+    void updateAllCol(int suppId, String name, String address, String vatNo, double cbalance, int isactive, int userId);
 
-    @Query(value = "delete from `vansale`.`supplier` where (`supp_id` = ?1) and (`user_id` = ?2)",nativeQuery = true)
+    @Modifying
+    @Query(value = "delete from `vansale`.`supplier` where (`supp_id` = ?1) and (`user_id` = ?2) limit 1",nativeQuery = true)
     void deleteBYSuppID(int suppID, int userID);
+
+    @Query(value = "select * from `vansale`.`supplier` where (`supp_id` = ?1) and (`user_id` = ?2)",nativeQuery = true)
+    SupplierEntity getSuppierByID(int suppID, int userID);
 
 //    @Query(value = "SELECT * FROM vansale.supplier where supp_id = ?1", nativeQuery = true)
 //    SupplierEntity findBySuppId(int id);

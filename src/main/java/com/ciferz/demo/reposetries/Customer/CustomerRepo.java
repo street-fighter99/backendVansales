@@ -31,6 +31,7 @@ public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
 
     List<CustomerEntity> getByUserId(int id);
 
-    @Query(value = "delete from `vansale`.`customer` where customer_id = ?1 and user_id = ?2 limit 1", nativeQuery = true)
+    @Modifying
+    @Query(value = "delete from `vansale`.`customer` where (`customer_id` = ?1) and (`user_id` = ?2) limit 1", nativeQuery = true)
     void deleteBYcustomerID(int cudtomerId, int userId);
 }

@@ -70,11 +70,17 @@ public class SupplierService {
     }
 
     public ResponseEntity updateAllCol(SupplierModel supplierModel) {
-        SupplierEntity supplier = supplierRepo.updateAllCol(supplierModel.getSuppId(),supplierModel.getName()
+        supplierRepo.updateAllCol(supplierModel.getSuppId(),supplierModel.getName()
         ,supplierModel.getAddress(),supplierModel.getVatNo(),supplierModel.getCbalance(),supplierModel.getIsactive()
         ,supplierModel.getUserId());
+        SupplierEntity supplier = getSupplier(supplierModel.getSuppId(),supplierModel.getUserId());
 
         return new ResponseEntity(supplier,HttpStatus.ACCEPTED);
+    }
+
+    public SupplierEntity getSupplier(int suppID,int userID){
+        SupplierEntity supplier = supplierRepo.getSuppierByID(suppID,userID);
+        return supplier;
     }
 
     public ResponseEntity deleteBySuppID(int suppID, int userID) {

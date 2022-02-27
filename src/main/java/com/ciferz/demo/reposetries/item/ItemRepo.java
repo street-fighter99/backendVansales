@@ -32,6 +32,7 @@ public interface ItemRepo extends JpaRepository<ItemEntity,Integer> {
     @Query(value = "select * from `vansale`.`item` where id =?1",nativeQuery = true)
     ItemEntity getByIds(int id);
 
-    @Query( value = "delete from `vansale.`item` where user_id = ?1 and item_id = ?2",nativeQuery = true)
+    @Modifying
+    @Query( value = "delete from `vansale.`item` where (`user_id` = ?1) and (`item_id` = ?2) limit 1",nativeQuery = true)
     void deleteByUsrandItemID(int userId, int itemId);
 }
