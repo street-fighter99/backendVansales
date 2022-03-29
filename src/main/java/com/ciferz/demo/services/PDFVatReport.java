@@ -101,11 +101,12 @@ public class PDFVatReport {
 
             table.addCell(String.valueOf(i));
             table.addCell(String.valueOf(sales.getTdate()));
-            CustomerEntity customerEntity = customerRepo.getById(sales.getCustomerId());
+            CustomerEntity customerEntity = customerRepo.getByCsId(sales.getCustomerId());
             table.addCell(String.valueOf(customerEntity.getName()));
             table.addCell(String.valueOf(customerEntity.getVatNo()));
             table.addCell(String.valueOf(sales.getAftDiscount()));
-            table.addCell(String.valueOf(sales.getVat()));
+            double vat = sales.getVat();
+            table.addCell(String.format("%.2f",vat));
             table.addCell(String.valueOf(sales.getNetAmount()));
             i++;
 

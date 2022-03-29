@@ -8,7 +8,7 @@ import javax.persistence.Column;
 public class SupplierModel {
 
     private int id;
-    private int suppId;
+    private int csId;
     private String name;
     private String address;
     private String vatNo;

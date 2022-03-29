@@ -62,7 +62,7 @@ public class CustomerService {
     }
 
     public ResponseEntity updateAll(CustomerModel customerModel) {
-        customerRepo.updateAll(customerModel.getName(),customerModel.getVatNo(),customerModel.getCbalance(),customerModel.getIsactive(),customerModel.getAddress(),customerModel.getCustomerId(),customerModel.getUserId());
+        customerRepo.updateAll(customerModel.getName(),customerModel.getVatNo(),customerModel.getCbalance(),customerModel.getIsactive(),customerModel.getAddress(),customerModel.getCsId(),customerModel.getUserId());
         return new ResponseEntity("Customer details updated.",HttpStatus.ACCEPTED);
 
     }

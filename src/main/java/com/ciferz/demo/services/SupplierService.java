@@ -70,10 +70,10 @@ public class SupplierService {
     }
 
     public ResponseEntity updateAllCol(SupplierModel supplierModel) {
-        supplierRepo.updateAllCol(supplierModel.getSuppId(),supplierModel.getName()
+        supplierRepo.updateAllCol(supplierModel.getCsId(),supplierModel.getName()
         ,supplierModel.getAddress(),supplierModel.getVatNo(),supplierModel.getCbalance(),supplierModel.getIsactive()
         ,supplierModel.getUserId());
-        SupplierEntity supplier = getSupplier(supplierModel.getSuppId(),supplierModel.getUserId());
+        SupplierEntity supplier = getSupplier(supplierModel.getCsId(),supplierModel.getUserId());
 
         return new ResponseEntity(supplier,HttpStatus.ACCEPTED);
     }

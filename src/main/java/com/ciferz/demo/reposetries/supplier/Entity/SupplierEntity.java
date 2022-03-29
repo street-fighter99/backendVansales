@@ -20,7 +20,7 @@ public class SupplierEntity {
     private int id;
 
     @Column(name = "supp_id")
-    private int suppId;
+    private int csId;
 
     @Column(name = "name")
     private String name;

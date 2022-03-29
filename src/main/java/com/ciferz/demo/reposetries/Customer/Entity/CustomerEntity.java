@@ -22,7 +22,7 @@ public class CustomerEntity {
 
 
     @Column(name = "customer_id")
-    private int customerId;
+    private int csId;
 
     @Column(name = "name")
     private String name;

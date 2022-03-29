@@ -23,17 +23,23 @@ public interface SalesRepo extends JpaRepository<SalesEntity,Integer> {
 
     List<SalesEntity> findAllByOrderByIdDesc();
 
-    @Query(value = "SELECT * FROM vansale.sales where user_id = ?1 ORDER BY id DESC" ,nativeQuery = true)
+    @Query(value = "SELECT * FROM `vansale`.`sales` where user_id = ?1 ORDER BY id DESC" ,nativeQuery = true)
     List<SalesEntity> getByUserIdDesc(int id);
 
     List<SalesEntity> findAllByUserId(int userId);
 
-    @Query(value = "update vansale.sales set sale_id =?1, customer_id=?2, item_list=?3, total_amount = ?4, discount = ?5, aftdiscount=?6, net_amount = ?7, recieved_amount = ?8,balance = ?9, total_balance = ?10,is_active = ?11,vat = ?12,s_date = ?13 where (`user_id` =?14) and (`sales_id` = ?1)",nativeQuery = true)
+    @Query(value = "update `vansale`.`sales` set sale_id =?1, customer_id=?2, item_list=?3, total_amount = ?4, discount = ?5, aftdiscount=?6, net_amount = ?7, recieved_amount = ?8,balance = ?9, total_balance = ?10,is_active = ?11,vat = ?12,s_date = ?13 where (`user_id` =?14) and (`sales_id` = ?1)",nativeQuery = true)
     SalesEntity updateAll(int saleId, int customerId, String itemList, double totalAmount, double discount, double aftDiscount, double netAmount, double recievedAmount, double balance, double totalBalance,int isActive, double vat, String tdate, int userId);
 
     @Modifying
     @Query(value = "delete from `vansale`.`sales` where (`user_id` =?1) and (`sale_id` = ?2) limit 1",nativeQuery = true)
     void DELBYDSALID(int userID, int salesID);
+
+    @Query(value = "select * from `vansale`.`sales` where month(s_date) = ?1 and year(s_date)=?2",nativeQuery = true)
+    List<SalesEntity> getbydate(int stMonth, int styear);
+
+
+
 
 
 //    List<SalesEntity> getBySDate(String date);

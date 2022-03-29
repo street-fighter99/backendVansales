@@ -1,10 +1,7 @@
 package com.ciferz.demo.controller;
 
 import com.ciferz.demo.inventory.SoldItemStocks;
-import com.ciferz.demo.services.PDFCustomerBal;
-import com.ciferz.demo.services.PDFGenerateService;
-import com.ciferz.demo.services.PDFStockListService;
-import com.ciferz.demo.services.PDFVatReport;
+import com.ciferz.demo.services.*;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +30,9 @@ public class PDFGenerateController {
 
     @Autowired
     PDFVatReport pdfVatReport;
+
+    @Autowired
+    PDFVatPeriodic pdfVatPeriodic;
 
 
     @GetMapping("/generate/pdf/sales/{pdate}/{userID}")
@@ -86,6 +86,19 @@ public class PDFGenerateController {
         response.setHeader(headerKey,headerValue);
 
         pdfVatReport.PdfGenerator(response,currentDateTime,userId);
+    }
+
+    @GetMapping("/generate/periodvat/{stdate}/{eddate}/{userID}")
+    public void generateCustomerVatByDate(HttpServletResponse response,@PathVariable("stdate") String stdate,@PathVariable("eddate") String eddate,@PathVariable("userID") int userID) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
+        String currentDateTime= dateFormat.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Periodic_Vat_report"+ currentDateTime +".pdf";
+        response.setHeader(headerKey,headerValue);
+
+        pdfVatPeriodic.PdfGenerator(response, stdate, eddate, userID);
     }
 
 

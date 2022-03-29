@@ -1,6 +1,7 @@
 package com.ciferz.demo.reposetries.purchase;
 
 import com.ciferz.demo.reposetries.purchase.Entity.PurchaseEntity;
+import com.ciferz.demo.reposetries.sales.Entity.SalesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -22,4 +23,7 @@ public interface PurchaseRepo extends JpaRepository<PurchaseEntity,Integer> {
     @Modifying
     @Query(value = "delete from `vansale`.`purchase` where (`user_id` =?1) and (`purchase_id` = ?2) limit 1",nativeQuery = true)
     PurchaseEntity delBYPURID(int userID, int purchaseID);
+
+    @Query(value = "select * from `vansale`.`purchase` where month(p_date) = ?1 and year(p_date)=?2",nativeQuery = true)
+    List<PurchaseEntity> getbydate(int stmonth, int styear);
 }
