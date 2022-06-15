@@ -25,6 +25,9 @@ public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
     @Query(value = "SELECT * FROM vansale.customer where id=?1 and user_id = ?2", nativeQuery = true)
     List<CustomerEntity> getallById(int id,int userID);
 
+    @Query(value = "SELECT * FROM vansale.customer where customer_id=?1 and user_id = ?2", nativeQuery = true)
+    List<CustomerEntity> getbyCsId(int id,int userID);
+
     @Modifying
     @Query(value = "UPDATE `vansale`.`customer` SET `name` =?1, `address` =?5, `vat_no` = ?2, `cbalance` = ?3, `is_active` = ?4 WHERE (`customer_id` = ?6) and (`user_id` = ?7)",nativeQuery = true)
     void updateAll(String name, String vatNo, double cbalance, int isactive, String address, int id, int userId);
@@ -35,5 +38,6 @@ public interface CustomerRepo extends JpaRepository<CustomerEntity,Integer> {
     @Query(value = "delete from `vansale`.`customer` where (`customer_id` = ?1) and (`user_id` = ?2) limit 1", nativeQuery = true)
     void deleteBYcustomerID(int cudtomerId, int userId);
 
-    CustomerEntity getByCsId(int customerId);
+    @Query(value = "select * from `vansale`.`customer` where `user_id` = ?1 and `customer_id` = ?2 ",nativeQuery = true)
+    CustomerEntity getByCsId(int userId, int customerId);
 }

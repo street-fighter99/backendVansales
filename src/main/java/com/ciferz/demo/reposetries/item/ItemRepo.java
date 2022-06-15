@@ -20,8 +20,8 @@ public interface ItemRepo extends JpaRepository<ItemEntity,Integer> {
 
 
     @Modifying
-    @Query(value = "update ItemEntity De set De.stock=?2 where De.id=?1")
-    void updateStocks(int id, int stock);
+    @Query(value = "update ItemEntity De set De.stock=?2 where De.itemId=?1 and De.userId = ?3")
+    void updateStocks(int id, int stock, int user_id);
 
     @Modifying
     @Query(value = "UPDATE `vansale`.`item` SET `name` =?1, `suppliers` =?4, `stock` =?3, `vat` =?5, `is_active` =?2, `arabic_name`=?7,`item_id` =?6  WHERE (`item_id` =?6) and (`user_id` = ?8)",nativeQuery = true)
@@ -35,4 +35,7 @@ public interface ItemRepo extends JpaRepository<ItemEntity,Integer> {
     @Modifying
     @Query( value = "delete from `vansale`.`item` where (`user_id` = ?1) and (`item_id` = ?2) limit 1",nativeQuery = true)
     void deleteByUsrandItemID(int userId, int itemId);
+
+    @Query(value = "select * from `vansale`.`item` where (`user_id` = ?2) and (`item_id` = ?1)",nativeQuery = true)
+    ItemEntity getByitemIdAndUserID(int itemId, int userId);
 }

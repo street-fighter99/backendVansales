@@ -34,6 +34,26 @@ public class PDFGenerateController {
     @Autowired
     PDFVatPeriodic pdfVatPeriodic;
 
+    @Autowired
+    PDFSalesReportPerodic salesReportPerodic;
+
+    @Autowired
+    NewPDFSalesReportPeriodic newPDFSalesReportPeriodic;
+
+    @Autowired
+    NewPeriodicPurchase newPeriodicPurchase;
+
+    @Autowired
+    PDFBalanceSheet pdfBalanceSheet;
+
+    @Autowired
+    NewPDFSoldStockList pdfSoldStockList;
+
+    @Autowired
+    NewPDFInStockList newPDFInStockList;
+
+
+
 
     @GetMapping("/generate/pdf/sales/{pdate}/{userID}")
     public void generatePDF(HttpServletResponse response, @PathVariable("pdate") String pdate,@PathVariable("userID") int userID) throws IOException {
@@ -101,5 +121,82 @@ public class PDFGenerateController {
         pdfVatPeriodic.PdfGenerator(response, stdate, eddate, userID);
     }
 
+    @GetMapping("/generate/periodsale/{stdate}/{eddate}/{userID}")
+    public void generateSalesRepotBWDates(HttpServletResponse response,@PathVariable("stdate") String stdate,@PathVariable("eddate") String eddate,@PathVariable("userID") int userID) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
+        String currentDateTime= dateFormat.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Periodic_sale_report"+ currentDateTime +".pdf";
+        response.setHeader(headerKey,headerValue);
+
+        salesReportPerodic.PdfGenerator(response, stdate, eddate, userID);
+    }
+
+    @GetMapping("/generate/new/periodsale/{stdate}/{eddate}/{userID}")
+    public void NewGenerateSalesRepotBWDates(HttpServletResponse response,@PathVariable("stdate") String stdate,@PathVariable("eddate") String eddate,@PathVariable("userID") int userID) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
+        String currentDateTime= dateFormat.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Periodic_sale_report"+ currentDateTime +".pdf";
+        response.setHeader(headerKey,headerValue);
+
+        newPDFSalesReportPeriodic.PdfGenerator(response, stdate, eddate, userID);
+    }
+
+    @GetMapping("/generate/new/periodpurchase/{stdate}/{eddate}/{userID}")
+    public void NewGeneratePurchaseRepotBWDates(HttpServletResponse response,@PathVariable("stdate") String stdate,@PathVariable("eddate") String eddate,@PathVariable("userID") int userID) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
+        String currentDateTime= dateFormat.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Periodic_purchase_report"+ currentDateTime +".pdf";
+        response.setHeader(headerKey,headerValue);
+
+        newPeriodicPurchase.PdfGenerator(response, stdate, eddate, userID);
+    }
+
+    @GetMapping("/generate/new/balance/{userID}")
+    public void NewbalanceSheet(HttpServletResponse response,@PathVariable("userID") int userID) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
+        String currentDateTime= dateFormat.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=customer_balance_report"+ currentDateTime +".pdf";
+        response.setHeader(headerKey,headerValue);
+
+        pdfBalanceSheet.PdfGenerator(response, userID);
+    }
+
+    @GetMapping("/generate/new/stocklist/{userID}")
+    public void generateAllSoldStockBalsPDF(HttpServletResponse response,@PathVariable("userID") int userID) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
+        String currentDateTime= dateFormat.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=SoldStockListPDF_"+ currentDateTime +".pdf";
+        response.setHeader(headerKey,headerValue);
+
+        pdfSoldStockList.PdfGenerator(response, userID);
+    }
+
+    @GetMapping("/generate/new/instocklist/{userID}")
+    public void generateStocklistPDF(HttpServletResponse response,@PathVariable("userID") int userID) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:mm:ss");
+        String currentDateTime= dateFormat.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=StockListPDF_"+ currentDateTime +".pdf";
+        response.setHeader(headerKey,headerValue);
+
+        newPDFInStockList.PdfGenerator(response, userID);
+    }
 
 }

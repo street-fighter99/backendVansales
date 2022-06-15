@@ -26,4 +26,7 @@ public interface PurchaseRepo extends JpaRepository<PurchaseEntity,Integer> {
 
     @Query(value = "select * from `vansale`.`purchase` where month(p_date) = ?1 and year(p_date)=?2",nativeQuery = true)
     List<PurchaseEntity> getbydate(int stmonth, int styear);
+
+    @Query( value = "select * from `vansale`.`purchase` where p_date between ?1 and ?2 and (user_id = ?3)",nativeQuery = true)
+    List<PurchaseEntity> getpurchaseBWDates(String stdate, String eddate, int userId);
 }

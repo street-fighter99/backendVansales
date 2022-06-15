@@ -16,31 +16,30 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class PDFVatReport {
-
-    @Autowired
-    SalesRepo salesRepo;
+public class PDFBalanceSheet {
 
     @Autowired
     CustomerRepo customerRepo;
 
-    public void PdfGenerator(HttpServletResponse response, String currentDateTime, int userId) throws IOException {
+
+    public void PdfGenerator(HttpServletResponse response, int userID) throws IOException {
+
         Document document = new Document(PageSize.A4);
-        PdfWriter.getInstance(document,response.getOutputStream());
+        PdfWriter.getInstance(document, response.getOutputStream());
 
         document.open();
 
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA);
         fontTitle.setSize(25);
 
-        Paragraph paragraph = new Paragraph("Vat Report", fontTitle);
+        Paragraph paragraph = new Paragraph("CUSTOMER BALANCE SHEET", fontTitle);
 
         paragraph.setAlignment(Element.ALIGN_CENTER);
 
         Font fontParagraph2 = FontFactory.getFont(FontFactory.HELVETICA);
         fontParagraph2.setSize(12);
 
-        Paragraph paragraph2 = new Paragraph("Date: "+currentDateTime, fontParagraph2);
+        Paragraph paragraph2 = new Paragraph("Date: ", fontParagraph2);
         paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
         paragraph2.setSpacingBefore(20);
 
@@ -55,14 +54,13 @@ public class PDFVatReport {
         document.add(paragraph);
         document.add(paragraph2);
 
-        PdfPTable table = new PdfPTable(7);
+        PdfPTable table = new PdfPTable(4);
         table.setWidthPercentage(100);
         table.setSpacingBefore(12);
 
 
-
         writeTableHeader(table);
-        writeTableData(table,userId);
+        writeTableData(table, userID);
 
         document.add(table);
         document.add(paragraph1);
@@ -70,47 +68,50 @@ public class PDFVatReport {
         document.close();
     }
 
-    public void writeTableHeader(PdfPTable table){
+    public void writeTableHeader(PdfPTable table) {
         PdfPCell cell = new PdfPCell();
         cell.setPadding(5);
         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         font.setSize(8);
 
-        cell.setPhrase(new Phrase("S.No",font));
+        cell.setPhrase(new Phrase("S.No", font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("DATE",font));
+        cell.setPhrase(new Phrase("NAME OF THE CUSTOMER", font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("Name",font));
+        cell.setPhrase(new Phrase("VAT NO.", font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("VAT No.",font));
+        cell.setPhrase(new Phrase("AMOUNT", font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("Net Total(Aft Discount)",font));
-        table.addCell(cell);
-        cell.setPhrase(new Phrase("VAT",font));
-        table.addCell(cell);
-        cell.setPhrase(new Phrase("Net Amount",font));
-        table.addCell(cell);
+
+
     }
 
-    public void writeTableData(PdfPTable table, int userId){
-        List<SalesEntity> list = salesRepo.findAllByUserId(userId);
-        double totalBalance =0.0;
+    public void writeTableData(PdfPTable table, int userId) {
+        List<CustomerEntity> list = customerRepo.getByUserId(userId);
+        double TotalAmount = 0.0;
 
         int i = 1;
-        for (SalesEntity sales: list){
+        for (CustomerEntity customer : list) {
+
 
             table.addCell(String.valueOf(i));
-            table.addCell(String.valueOf(sales.getTdate()));
-            CustomerEntity customerEntity = customerRepo.getByCsId(sales.getUserId(),sales.getCustomerId());
-            table.addCell(String.valueOf(customerEntity == null ? "PRE Customer":customerEntity.getName()));
-            table.addCell(String.valueOf(customerEntity == null ? "Vat No": customerEntity.getVatNo()));
-            table.addCell(String.valueOf(sales.getAftDiscount()));
-            double vat = sales.getVat();
-            table.addCell(String.format("%.2f",vat));
-            table.addCell(String.valueOf(sales.getNetAmount()));
+            table.addCell(customer.getName());
+            table.addCell(customer.getVatNo());
+            table.addCell(String.format("%.2f",customer.getCbalance()));
+            TotalAmount += customer.getCbalance();
             i++;
 
+
         }
+
+        Font font = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE);
+        font.setSize(13);
+
+
+        table.addCell(" ");
+        table.addCell(" ");
+        table.addCell(" TOTAL AMOUNT : ");
+        table.addCell(String.format("%.2f",TotalAmount));
 
     }
 }

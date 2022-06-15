@@ -88,7 +88,7 @@ public class PDFCustomerBal {
     }
 
     public void writeTableData(PdfPTable table, int id, int userID){
-        List<CustomerEntity> list = customerRepo.getallById(id,userID);
+        List<CustomerEntity> list = customerRepo.getbyCsId(id,userID);
         double totalBalance =0.0;
 
 
@@ -96,7 +96,7 @@ public class PDFCustomerBal {
         for (CustomerEntity customer : list){
             i=i++;
             table.addCell(String.valueOf(i));
-            table.addCell(String.valueOf(customer.getId()));
+            table.addCell(String.valueOf(customer.getCsId()));
             table.addCell(String.valueOf(customer.getName()));
             table.addCell(String.valueOf(customer.getCbalance()));
 

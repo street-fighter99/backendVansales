@@ -26,7 +26,7 @@ public class ItemController {
         return list;
     }
 
-    @GetMapping("/get/byId")
+    @GetMapping("/get/byId/{id}")
     public ItemEntity getById(@PathVariable int id){
         ItemEntity item=itemService.getById(id);
         return item;

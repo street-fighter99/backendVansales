@@ -52,7 +52,7 @@ public class PurchaseEntity {
     private double totalBalance;
 
     @Column(name = "vat")
-    private String vat;
+    private double vat;
 
     @Column(name = "p_date")
     private Date tdate;

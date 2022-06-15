@@ -8,4 +8,5 @@ public class StockChk {
     private String name;
     private int stock;
     private double price;
+    private double sprice;
 }

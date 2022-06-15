@@ -38,8 +38,8 @@ public interface SalesRepo extends JpaRepository<SalesEntity,Integer> {
     @Query(value = "select * from `vansale`.`sales` where month(s_date) = ?1 and year(s_date)=?2",nativeQuery = true)
     List<SalesEntity> getbydate(int stMonth, int styear);
 
-
-
+    @Query(value = "select * from `vansale`.`sales` where s_date between ?1 and ?2 and (user_id = ?3)",nativeQuery = true)
+    List<SalesEntity> getSalesBWDates(String stdate, String eddate, int userId);
 
 
 //    List<SalesEntity> getBySDate(String date);
